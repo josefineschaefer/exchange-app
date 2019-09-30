@@ -1,30 +1,20 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function Entry() {
+export default function Entry({ title, date, text, image }) {
   return (
     <EntryStyled>
       <HeaderStyled>
-        <TitleStyled> Entry</TitleStyled>
-        <DateStyled>01.08.2018</DateStyled>
+        <TitleStyled> {title}</TitleStyled>
+        <DateStyled>{date}</DateStyled>
       </HeaderStyled>
-
-      <EntryBodyStyled>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-        ipsum dolor sit amet.
-      </EntryBodyStyled>
+      <EntryBodyStyled>{text}</EntryBodyStyled>
+      <EntryImageStyled src={image} />
     </EntryStyled>
   )
 }
 
-const EntryStyled = styled.div`   
+const EntryStyled = styled.div`
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
   margin: 10px;
@@ -49,5 +39,10 @@ const DateStyled = styled.span`
 const EntryBodyStyled = styled.div`
   background-color: white;
   padding: 20px;
+  border-radius: 0 0 5px 5px;
+`
+
+const EntryImageStyled = styled.img`
+  width: 100%;
   border-radius: 0 0 5px 5px;
 `
