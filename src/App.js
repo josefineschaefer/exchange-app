@@ -1,8 +1,12 @@
 import React from 'react';
+import Entry from './Entry'
+
 function App() {
  return (
-   <div className="App">
-    <h1>Hallo</h1>
+   <div>
+    <Entry></Entry>
+    <Entry></Entry>
+    <Entry></Entry>
    </div>
  );
 }
