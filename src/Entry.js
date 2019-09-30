@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
 export default function Entry({ title, date, text, image }) {
+  const [isTextVisible, setIsTextVisible] = useState(false)
+
+  function toggleText() {
+    setIsTextVisible(!isTextVisible)
+  }
+
   return (
-    <EntryStyled>
+    <EntryStyled onClick={toggleText}>
       <HeaderStyled>
         <TitleStyled> {title}</TitleStyled>
         <DateStyled>{date}</DateStyled>
       </HeaderStyled>
-      <EntryBodyStyled>{text}</EntryBodyStyled>
-      <EntryImageStyled src={image} />
+      {isTextVisible && (
+        <EntryBodyStyled>
+          <EntryImageStyled src={image} />
+          {text}
+        </EntryBodyStyled>
+      )}
     </EntryStyled>
   )
 }
@@ -18,6 +28,8 @@ const EntryStyled = styled.div`
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
 `
 const HeaderStyled = styled.div`
   font-weight: bold;
