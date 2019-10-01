@@ -7,11 +7,13 @@ export default function Entry({ title, date, text, image }) {
   function toggleText() {
     setIsTextVisible(!isTextVisible)
   }
-
   return (
     <EntryStyled onClick={toggleText}>
       <HeaderStyled>
-        <TitleStyled> {title}</TitleStyled>
+        <TitleStyled>
+          <i class="far fa-edit"></i>
+          {title}
+        </TitleStyled>
         <DateStyled>{date}</DateStyled>
       </HeaderStyled>
       {isTextVisible && (
@@ -35,7 +37,7 @@ const HeaderStyled = styled.div`
   font-weight: bold;
   background-color: #ec8647;
   padding: 20px;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 5px 5px;
   display: flex;
   justify-content: space-between;
 `
