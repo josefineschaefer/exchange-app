@@ -8,6 +8,7 @@ import exchange2 from './images/exchange2.jpg'
 import worldmap from './images/worldmap.png'
 import GlobalStyles from './common/GlobalStyles'
 
+
 function App() {
   const [entries, setEntries] = useState([
     {
