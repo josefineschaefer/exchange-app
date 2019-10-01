@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function CreateEntry({ onSubmit}) {
+export default function CreateEntry({ onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
+    data.date = formatDate(data.date)
     onSubmit(data)
     form.reset()
     form.title.focus()
@@ -27,12 +28,11 @@ export default function CreateEntry({ onSubmit}) {
     'DEZ'
   ]
 
-  function formatDate(event) {
-    const selectedDate = event.target.value
-    const date = new Date(selectedDate)
-    let formattedDate =
-      date.getDate() + '. ' + months[date.getMonth()] + ' ' + date.getFullYear()
-    console.log(formattedDate)
+  function formatDate(date) {
+    const newDate = new Date(date)
+    const formattedDate =
+    newDate.getDate() + '. ' + months[newDate.getMonth()] + ' ' + newDate.getFullYear()
+    return formattedDate
   }
 
   return (
@@ -43,7 +43,7 @@ export default function CreateEntry({ onSubmit}) {
       </LabelStyled>
       <LabelStyled>
         Datum
-        <input name="date" type="date" onChange={formatDate} />
+        <input name="date" type="date" />
       </LabelStyled>
       <LabelStyled>
         Eintrag
