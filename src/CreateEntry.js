@@ -31,7 +31,11 @@ export default function CreateEntry({ onSubmit }) {
   function formatDate(date) {
     const newDate = new Date(date)
     const formattedDate =
-    newDate.getDate() + '. ' + months[newDate.getMonth()] + ' ' + newDate.getFullYear()
+      newDate.getDate() +
+      '. ' +
+      months[newDate.getMonth()] +
+      ' ' +
+      newDate.getFullYear()
     return formattedDate
   }
 
@@ -61,13 +65,17 @@ const FormStyled = styled.form`
 `
 
 const LabelStyled = styled.label`
+  font-weight: bold;
   display: grid;
   gap: 10px;
 `
 
 const ButtonStyled = styled.button`
   border: none;
-  border-radius: 3px;
   padding: 20px;
   background: #ec8647;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px #0002;
+  font-size: 1em;
 `
