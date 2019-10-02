@@ -51,7 +51,7 @@ export default function CreateEntry({ onSubmit }) {
       </LabelStyled>
       <LabelStyled>
         Eintrag
-        <textarea name="entry" />
+        <textarea rows="10" cols="33" name="entry" />
       </LabelStyled>
       <ButtonStyled>Eintrag erstellen</ButtonStyled>
     </FormStyled>
@@ -59,7 +59,8 @@ export default function CreateEntry({ onSubmit }) {
 }
 
 const FormStyled = styled.form`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
 `
@@ -78,4 +79,5 @@ const ButtonStyled = styled.button`
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
   font-size: 1em;
+  height: 60px;
 `
