@@ -54,7 +54,7 @@ function App() {
     <Router>
       <GlobalStyles />
       <AppStyled>
-        <Header />
+        <Header> Mein Austauschjahr</Header>
         <Route exact path="/" render={() => <HomePage entries={entries} />} />
         <Route
           path="/create"

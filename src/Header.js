@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function Header() {
-  return <HeaderStyled> Mein Austauschjahr</HeaderStyled>
+export default function Header({children}) {
+  return <HeaderStyled>{children}</HeaderStyled>
 }
 
 const HeaderStyled = styled.div`
