@@ -14,18 +14,18 @@ export default function CreateEntry({ onSubmit }) {
   }
 
   const months = [
-    'JAN',
-    'FEB',
-    'MAR',
-    'APR',
-    'MAI',
-    'JUN',
-    'JUL',
-    'AUG',
-    'SEP',
-    'OKT',
-    'NOV',
-    'DEZ'
+    'Jan',
+    'Feb',
+    'März',
+    'Apr',
+    'Mai',
+    'Juni',
+    'Juli',
+    'Aug',
+    'Sept',
+    'Okt',
+    'Nov',
+    'Dez'
   ]
 
   function formatDate(date) {

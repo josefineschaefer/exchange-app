@@ -3,11 +3,11 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 Entry.propTypes = {
-  title: PropTypes.string,
-  date: PropTypes.string,
-  text: PropTypes.string,
-  image: PropTypes.string
-}
+   title: PropTypes.string,
+   date: PropTypes.string,
+   text: PropTypes.string,
+   image: PropTypes.string
+ }
 
 export default function Entry({ title, date, text, image }) {
   const [isTextVisible, setIsTextVisible] = useState(false)
@@ -26,7 +26,7 @@ export default function Entry({ title, date, text, image }) {
               focusable="false"
               data-prefix="fas"
               data-icon="pencil-alt"
-              class="svg-inline--fa fa-pencil-alt fa-w-16"
+              className="svg-inline--fa fa-pencil-alt fa-w-16"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
