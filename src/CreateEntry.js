@@ -51,7 +51,7 @@ export default function CreateEntry({ onSubmit }) {
       </LabelStyled>
       <LabelStyled>
         Eintrag
-        <textarea rows="10" cols="33" name="entry" />
+        <textarea rows="10" cols="33" name="text" />
       </LabelStyled>
       <ButtonStyled>Eintrag erstellen</ButtonStyled>
     </FormStyled>

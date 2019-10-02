@@ -4,22 +4,29 @@ import worldmap from './images/worldmap.png'
 import Entry from './Entry'
 
 export default function Homepage({ entries }) {
-  
   return (
-    <div>
-      <StyledHeaderImage src={worldmap} />
-      {entries.map(entry => 
-        <Entry
-          title={entry.title}
-          date={entry.date}
-          text={entry.text}
-          image={entry.image}
-        />
-      )}
-    </div>
+    <>
+    <StyledHeaderImage src={worldmap}/>
+      <Scroller>
+        {entries.map(entry => (
+          <Entry
+            title={entry.title}
+            date={entry.date}
+            text={entry.text}
+            image={entry.image}
+          />
+        ))}
+      </Scroller>
+    </>
   )
 }
 
 const StyledHeaderImage = styled.img`
-width: 100%;
+  width: 100%;
+`
+
+const Scroller = styled.div`
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
 `

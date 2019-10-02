@@ -23,7 +23,7 @@ function App() {
 
   const AppStyled = styled.div`
     display: grid;
-    grid-template-rows: 48px auto 48px;
+    grid-template-rows: 48px auto auto 48px;
     position: fixed;
     left: 0;
     right: 0;

@@ -2,7 +2,6 @@ const router = require('express').Router()
 const Entry = require('../models/Entry')
 
 router.get('/', (req, res) => {
-  res.send('we are on the server')
   Entry.find()
   .then(entries => res.json(entries))
   .catch(err => res.json(err))

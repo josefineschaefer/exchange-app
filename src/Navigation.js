@@ -32,5 +32,5 @@ const NavigationStyled = styled.nav`
   display: grid;
   grid-auto-flow: column;
   gap: 1px;
-  height: 48px;
+  margin-top: 1px;
 `
