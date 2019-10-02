@@ -8,6 +8,7 @@ import happyexchangees from './images/happyexchangees.jpg'
 import GlobalStyles from './common/GlobalStyles'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navigation from './Navigation'
+import Header from './Header'
 
 function App() {
   const [entries, setEntries] = useState([
@@ -40,7 +41,7 @@ function App() {
 
   const AppStyled = styled.div`
     display: grid;
-    grid-template-rows: auto 48px;
+    grid-template-rows: 48px auto 48px;
     position: fixed;
     left: 0;
     right: 0;
@@ -53,12 +54,13 @@ function App() {
     <Router>
       <GlobalStyles />
       <AppStyled>
+        <Header> Mein Austauschjahr</Header>
         <Route exact path="/" render={() => <HomePage entries={entries} />} />
         <Route
           path="/create"
           render={() => <CreateEntry onSubmit={createEntry} />}
         />
-        <Navigation/>
+        <Navigation />
       </AppStyled>
     </Router>
   )
