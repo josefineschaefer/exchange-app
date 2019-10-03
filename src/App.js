@@ -12,18 +12,21 @@ import { getEntries, patchEntry, postEntry } from './services'
 
 function App() {
   const [entries, setEntries] = useState([])
-  
+
   useEffect(() => {
     getEntries().then(setEntries)
   }, [])
 
-  function createEntry(entry) {
+  function createEntry(entryData) {
+  postEntry(entryData).then(entry => {
     setEntries([...entries, entry])
+    })
   }
+  
 
   const AppStyled = styled.div`
     display: grid;
-    grid-template-rows: 48px auto auto 48px;
+    grid-template-rows: 48px auto 48px;
     position: fixed;
     left: 0;
     right: 0;

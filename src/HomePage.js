@@ -5,8 +5,8 @@ import Entry from './Entry'
 
 export default function Homepage({ entries }) {
   return (
-    <>
-    <StyledHeaderImage src={worldmap}/>
+    <StyledHomePage>
+      <StyledHeaderImage src={worldmap} />
       <Scroller>
         {entries.map(entry => (
           <Entry
@@ -17,9 +17,14 @@ export default function Homepage({ entries }) {
           />
         ))}
       </Scroller>
-    </>
+    </StyledHomePage>
   )
 }
+
+const StyledHomePage = styled.div`
+  display: grid;
+  overflow-y: auto;
+`
 
 const StyledHeaderImage = styled.img`
   width: 100%;
@@ -28,5 +33,4 @@ const StyledHeaderImage = styled.img`
 const Scroller = styled.div`
   overflow-y: auto;
   scroll-behavior: smooth;
-
 `

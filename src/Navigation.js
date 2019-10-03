@@ -6,7 +6,6 @@ export default function Navigation() {
   return (
     <NavigationStyled>
       <LinkStyled exact to="/">
-        {' '}
         Home
       </LinkStyled>
       <LinkStyled to="/create">Create</LinkStyled>
