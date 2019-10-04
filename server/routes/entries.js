@@ -13,7 +13,6 @@ router.get('/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
-
 router.post('/', (req, res) => {
   Entry.create(req.body)
     .then(entry => res.json(entry))
