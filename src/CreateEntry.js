@@ -1,5 +1,7 @@
 import React from 'react'
+import { getEntries, patchEntry, postEntry } from './services'
 import styled from 'styled-components/macro'
+let editingId = null
 
 export default function CreateEntry({ onSubmit }) {
   function handleSubmit(event) {
@@ -12,6 +14,11 @@ export default function CreateEntry({ onSubmit }) {
     form.reset()
     form.title.focus()
   }
+  // function CreateId({entry}){
+  //   editingId === null
+  //   ? postEntry(entry).then({CreateEntry})
+  //   : patchEntry(editingId, entry).then(()=> (editingId = null))
+  // }
 
   const months = [
     'Jan',

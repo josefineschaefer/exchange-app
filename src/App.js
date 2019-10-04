@@ -22,7 +22,6 @@ function App() {
     setEntries([...entries, entry])
     })
   }
-  
 
   const AppStyled = styled.div`
     display: grid;

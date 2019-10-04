@@ -3,25 +3,40 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 Entry.propTypes = {
-   title: PropTypes.string,
-   date: PropTypes.string,
-   text: PropTypes.string,
-   image: PropTypes.string
- }
+  title: PropTypes.string,
+  date: PropTypes.string,
+  text: PropTypes.string,
+  image: PropTypes.string
+}
 
-export default function Entry({ title, date, text, image }) {
+export default function Entry({ title, date, text, image, onPenClick }) {
   const [isTextVisible, setIsTextVisible] = useState(false)
 
   function toggleText() {
     setIsTextVisible(!isTextVisible)
   }
+
+//   function handlePenClick(event) {
+//     event.stopPropagation()
+//     {this.isInEditMode}
+//     editEntry()
+//     return (<EditIconStyled className="active"/>)
+//     }
+
+//    function editEntry(){
+//      console.log("Ready to edit")
+// if(this.entry.isInEditMode = true ){
+// }
+
+
   return (
-    <EntryStyled onClick={toggleText}>
+    <EntryStyled onClick={toggleText}> 
       <HeaderStyled>
         <TitleStyled>
           <div>
             {title}
             <EditIconStyled
+            //  onClick={handlePenClick}
               aria-hidden="true"
               focusable="false"
               data-prefix="fas"
@@ -53,6 +68,9 @@ export default function Entry({ title, date, text, image }) {
 const EditIconStyled = styled.svg`
   height: 14px;
   margin: 0 10px;
+  :active {
+    color: white;
+  }
 `
 
 const EntryStyled = styled.div`
