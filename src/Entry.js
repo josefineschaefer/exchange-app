@@ -11,7 +11,7 @@ Entry.propTypes = {
   image: PropTypes.string
 }
 
-export default function Entry({ title, date, text, image, id, deleteData }) {
+export default function Entry({ title, date, text, image, _id, deleteData }) {
   const [isTextVisible, setIsTextVisible] = useState(false)
 
   function toggleText() {
@@ -20,7 +20,7 @@ export default function Entry({ title, date, text, image, id, deleteData }) {
 
   function handleClick(event) {
     event.stopPropagation()
-    deleteData(id)
+    deleteData(_id)
   }
 
   return (
@@ -31,11 +31,12 @@ export default function Entry({ title, date, text, image, id, deleteData }) {
             {title}
             <NavLink
               to={{
-                pathname: '/create',
+                pathname: '/edit',
                 cardData: {
                   title,
                   date,
-                  text
+                  text, 
+                  id: _id,
                 }
               }}
             >

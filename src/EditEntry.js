@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-export default function CreateEntry({ onSubmit, editCardData }) {
+export default function EditEntry({ onSubmit, editCardData }) {
   function handleSubmit(event) {
     event.preventDefault()
-    const form = event.target
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    data.date = formatDate(data.date)
-    onSubmit(data)
-    form.reset()
-    form.title.focus()
+  
+    const newEditCardData = {
+      title,
+      date,
+      text
+    }
+    editCardData.date = formatDate(editCardData.date)
+    onSubmit(editCardData.id, newEditCardData)
   }
-
   const months = [
     'Jan',
     'Feb',
@@ -39,17 +39,28 @@ export default function CreateEntry({ onSubmit, editCardData }) {
     return formattedDate
   }
 
+  const [title, setTitle] = useState(editCardData.title)
+  const [date, setDate] = useState(editCardData.date)
+  const [text, setText] = useState(editCardData.text)
+
   return (
     <FormStyled onSubmit={handleSubmit}>
       <LabelStyled>
         Titel
         <input
           name="title"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
         />
       </LabelStyled>
       <LabelStyled>
         Datum
-        <input name="date" type="date"/>
+        <input
+          name="date"
+          type="date"
+          value={date}
+          onChange={event => setDate(event.target.value)}
+        />
       </LabelStyled>
       <LabelStyled>
         Eintrag
@@ -57,9 +68,11 @@ export default function CreateEntry({ onSubmit, editCardData }) {
           rows="10"
           cols="33"
           name="text"
+          value={text}
+          onChange={event => setText(event.target.value)}
         />
       </LabelStyled>
-      <ButtonStyled>Eintrag erstellen</ButtonStyled>
+      <ButtonStyled>Änderungen speichern</ButtonStyled>
     </FormStyled>
   )
 }
