@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import { NavLink } from 'react-router-dom'
 
 export default function EditEntry({ onSubmit, editCardData }) {
   function handleSubmit(event) {
     event.preventDefault()
-  
+
     const newEditCardData = {
       title,
       date,
@@ -72,7 +73,7 @@ export default function EditEntry({ onSubmit, editCardData }) {
           onChange={event => setText(event.target.value)}
         />
       </LabelStyled>
-      <ButtonStyled>Änderungen speichern</ButtonStyled>
+        <ButtonStyled>Änderungen speichern</ButtonStyled>
     </FormStyled>
   )
 }

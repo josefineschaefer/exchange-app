@@ -8,10 +8,10 @@ export default function Navigation() {
   return (
     <NavigationStyled>
       <LinkStyled exact to="/">
-        <StyledHome/>
+        <HomeStyled />
       </LinkStyled>
       <LinkStyled to="/create">
-        <StyledCreate />
+        <CreateStyled />
       </LinkStyled>
     </NavigationStyled>
   )
@@ -30,10 +30,10 @@ const LinkStyled = styled(NavLink)`
   }
 `
 
-const StyledHome = styled(HomeAlt)`
+const HomeStyled = styled(HomeAlt)`
   height: 30px;
 `
-const StyledCreate = styled(Create)`
+const CreateStyled = styled(Create)`
   height: 30px;
 `
 

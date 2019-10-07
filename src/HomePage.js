@@ -10,7 +10,7 @@ export default function Homepage({ entries, deleteData, editData }) {
       <Scroller>
         {entries.map(entry => (
           <Entry
-          {...entry}
+            {...entry}
             key={entry._id}
             deleteData={deleteData}
             editData={editData}
