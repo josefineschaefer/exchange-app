@@ -10,6 +10,10 @@ export function patchEntry(id, data) {
   return fetchEntries({ method: 'PATCH', id, data })
 }
 
+export function deleteEntry(id){
+  return fetchEntries({method: 'DELETE', id})
+}
+
 function fetchEntries({ method = 'GET', id = '', data } = {}) {
   return fetch('/entries/' + id, {
     method,

@@ -1,9 +1,7 @@
-import React from 'react'
-import { getEntries, patchEntry, postEntry } from './services'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-let editingId = null
 
-export default function CreateEntry({ onSubmit }) {
+export default function CreateEntry({ onSubmit, editCardData }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
@@ -14,11 +12,6 @@ export default function CreateEntry({ onSubmit }) {
     form.reset()
     form.title.focus()
   }
-  // function CreateId({entry}){
-  //   editingId === null
-  //   ? postEntry(entry).then({CreateEntry})
-  //   : patchEntry(editingId, entry).then(()=> (editingId = null))
-  // }
 
   const months = [
     'Jan',
@@ -46,19 +39,41 @@ export default function CreateEntry({ onSubmit }) {
     return formattedDate
   }
 
+  const [title, setTitle] = useState(editCardData.title ? editCardData.title: '')
+
+  function getEditTitle() {
+    return (editCardData === undefined ? '' : editCardData.title)
+  }
+
+  function getEditDate() {
+    return editCardData === undefined ? '' : editCardData.date
+  }
+
+  function getEditText() {
+    return editCardData === undefined ? '' : editCardData.text
+  }
+
   return (
     <FormStyled onSubmit={handleSubmit}>
       <LabelStyled>
         Titel
-        <input name="title" />
+        <input
+          name="title"
+          defaultValue={title || '0'}
+          onChange={setTitle => getEditTitle()}
+        />
       </LabelStyled>
       <LabelStyled>
         Datum
-        <input name="date" type="date" />
+        <input name="date" type="date"/>
       </LabelStyled>
       <LabelStyled>
         Eintrag
-        <textarea rows="10" cols="33" name="text" />
+        <textarea
+          rows="10"
+          cols="33"
+          name="text"
+        />
       </LabelStyled>
       <ButtonStyled>Eintrag erstellen</ButtonStyled>
     </FormStyled>

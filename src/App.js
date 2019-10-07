@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react'
 import HomePage from './HomePage'
 import styled from 'styled-components/macro'
 import CreateEntry from './CreateEntry'
-import exchange1 from './images/exchange1.jpg'
-import exchange2 from './images/exchange2.jpg'
-import happyexchangees from './images/happyexchangees.jpg'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navigation from './Navigation'
 import Header from './Header'
-import { getEntries, patchEntry, postEntry } from './services'
+import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
 
 function App() {
   const [entries, setEntries] = useState([])
@@ -20,6 +17,17 @@ function App() {
   function createEntry(entryData) {
   postEntry(entryData).then(entry => {
     setEntries([...entries, entry])
+    })
+  }
+
+ function deleteData(id){
+    deleteEntry(id).then(selectedEntry => {
+      console.log(selectedEntry)
+      const index = entries.findIndex(entry => entry._id === selectedEntry._id)
+      return setEntries([
+        ...entries.slice(0, index),
+        ...entries.slice(index + 1)
+      ])
     })
   }
 
@@ -38,10 +46,12 @@ function App() {
     <Router>
       <AppStyled>
         <Header> Mein Austauschjahr</Header>
-        <Route exact path="/" render={() => <HomePage entries={entries} />} />
+        <Route exact path="/" render={() => <HomePage entries={entries} deleteData={deleteData} />} />
         <Route
           path="/create"
-          render={() => <CreateEntry onSubmit={createEntry} />}
+          render={props => {
+          return <CreateEntry onSubmit={createEntry} editCardData={props.location.cardData} />
+        }}
         />
         <Navigation />
       </AppStyled>

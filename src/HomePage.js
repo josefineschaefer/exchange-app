@@ -3,17 +3,19 @@ import styled from 'styled-components/macro'
 import worldmap from './images/worldmap.png'
 import Entry from './Entry'
 
-export default function Homepage({ entries }) {
+export default function Homepage({ entries, deleteData }) {
   return (
     <StyledHomePage>
       <StyledHeaderImage src={worldmap} />
       <Scroller>
         {entries.map(entry => (
           <Entry
+            id={entry._id}
             title={entry.title}
             date={entry.date}
             text={entry.text}
             image={entry.image}
+            deleteData={deleteData}
           />
         ))}
       </Scroller>
