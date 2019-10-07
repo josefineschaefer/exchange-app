@@ -3,23 +3,34 @@ import styled from 'styled-components/macro'
 import worldmap from './images/worldmap.png'
 import Entry from './Entry'
 
-export default function Homepage({ entries }) {
-  
+export default function Homepage({ entries, deleteData, editData }) {
   return (
-    <div>
+    <StyledHomePage>
       <StyledHeaderImage src={worldmap} />
-      {entries.map(entry => 
-        <Entry
-          title={entry.title}
-          date={entry.date}
-          text={entry.text}
-          image={entry.image}
-        />
-      )}
-    </div>
+      <Scroller>
+        {entries.map(entry => (
+          <Entry
+            {...entry}
+            key={entry._id}
+            deleteData={deleteData}
+            editData={editData}
+          />
+        ))}
+      </Scroller>
+    </StyledHomePage>
   )
 }
 
+const StyledHomePage = styled.div`
+  display: grid;
+  overflow-y: auto;
+`
+
 const StyledHeaderImage = styled.img`
-width: 100%;
+  width: 100%;
+`
+
+const Scroller = styled.div`
+  overflow-y: auto;
+  scroll-behavior: smooth;
 `

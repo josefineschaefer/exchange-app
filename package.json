@@ -1,17 +1,28 @@
 {
   "name": "exchange-app",
+  "author": "Josefine Schaefer",
   "version": "0.1.0",
+  "proxy": "http://localhost:3333",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "file-system": "^2.2.2",
+    "mongoose": "^5.7.3",
+    "nodemon": "^1.19.3",
+    "npm-run-all": "^4.1.5",
     "prop-types": "^15.7.2",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "styled-icons": "^8.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p server dev",
+    "server": "nodemon server/server.js",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

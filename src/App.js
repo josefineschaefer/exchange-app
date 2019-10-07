@@ -1,64 +1,75 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import HomePage from './HomePage'
 import styled from 'styled-components/macro'
 import CreateEntry from './CreateEntry'
-import exchange1 from './images/exchange1.jpg'
-import exchange2 from './images/exchange2.jpg'
-import happyexchangees from './images/happyexchangees.jpg'
-import GlobalStyles from './common/GlobalStyles'
+import EditEntry from './EditEntry'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navigation from './Navigation'
 import Header from './Header'
+import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
 
 function App() {
-  const [entries, setEntries] = useState([
-    {
-      title: 'Third Entry',
-      date: '05. Aug 2018',
-      text:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-      image: happyexchangees
-    },
-    {
-      title: 'Second Entry',
-      date: '03. Aug 2018',
-      text:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-      image: exchange1
-    },
-    {
-      title: 'First Entry',
-      date: '01. Aug 2018',
-      text:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-      image: exchange2
-    }
-  ])
+  const [entries, setEntries] = useState([])
 
-  function createEntry(entry) {
-    setEntries([...entries, entry])
+  useEffect(() => {
+    getEntries().then(setEntries)
+  }, [])
+
+  function createEntry(entryData) {
+    postEntry(entryData).then(entry => {
+      setEntries([...entries, entry])
+    })
   }
 
-  const AppStyled = styled.div`
-    display: grid;
-    grid-template-rows: 48px auto 48px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-  `
+  function deleteData(id) {
+    deleteEntry(id).then(selectedEntry => {
+      console.log(selectedEntry)
+      const index = entries.findIndex(entry => entry._id === selectedEntry._id)
+      return setEntries([
+        ...entries.slice(0, index),
+        ...entries.slice(index + 1)
+      ])
+    })
+  }
 
+  function editEntry(id, data) {
+    patchEntry(id, data)
+    .then(selectedEntry => {
+        const index = entries.findIndex(entry => entry._id === selectedEntry._id)
+        setEntries([
+          ...entries.slice(0, index),
+          { title: selectedEntry.title, text: selectedEntry.text, date: selectedEntry.date},
+          ...entries.slice(index + 1),
+        ])
+      })
+    }
+    
+  
   return (
     <Router>
-      <GlobalStyles />
       <AppStyled>
         <Header> Mein Austauschjahr</Header>
-        <Route exact path="/" render={() => <HomePage entries={entries} />} />
+        <Route
+          exact
+          path="/"
+          render={() => <HomePage entries={entries} deleteData={deleteData} />}
+        />
         <Route
           path="/create"
-          render={() => <CreateEntry onSubmit={createEntry} />}
+          render={props => {
+            return <CreateEntry onSubmit={createEntry} />
+          }}
+        />
+        <Route
+          path="/edit"
+          render={props => {
+            return (
+              <EditEntry
+                onSubmit={editEntry}
+                editCardData={props.location.cardData}
+              />
+            )
+          }}
         />
         <Navigation />
       </AppStyled>
@@ -66,3 +77,14 @@ function App() {
   )
 }
 export default App
+
+const AppStyled = styled.div`
+  display: grid;
+  grid-template-rows: 48px auto 48px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+`
