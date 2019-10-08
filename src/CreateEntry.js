@@ -1,6 +1,7 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import axios from 'axios'
+import { ImageAdd } from 'styled-icons/boxicons-regular/ImageAdd'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -12,28 +13,27 @@ export default function CreateEntry({ onSubmit }) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
-      const data = Object.fromEntries(formData)
-      data.image = pictures
-      data.date = formatDate(data.date)
-      onSubmit(data)
-      form.reset()
-      form.title.focus()
-      
+    const data = Object.fromEntries(formData)
+    data.image = pictures
+    data.date = formatDate(data.date)
+    onSubmit(data)
+    form.reset()
+    form.title.focus()
   }
 
   function upload(event) {
-//    console.log(file)
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
     const formData = new FormData()
 
     formData.append('file', event.target.files[0])
     formData.append('upload_preset', PRESET)
 
-    axios.post(url, formData, {
-      headers: {
-        'Content-type': 'multipart/form-data'
-      }
-    })
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data'
+        }
+      })
       .then(response => {
         setPictures([...pictures, response.data.url])
       })
@@ -71,13 +71,15 @@ export default function CreateEntry({ onSubmit }) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <div>
-        {
-          pictures.map(pictureUrl => <img src={pictureUrl} style={{width: '100%'}} alt='test' />)
-        }
-      </div>
+      <>
+        {pictures.map(pictureUrl => (
+          <ImageStyled src={pictureUrl} alt="" />
+        ))}
+      </>
       <LabelStyled>
-        <input name="image" type="file" onChange={upload} />
+        Füge Bilder hinzu
+        <ImageUploadStyled />
+        <InputStyled name="image" type="file" onChange={upload} />
       </LabelStyled>
       <LabelStyled>
         Titel
@@ -95,12 +97,29 @@ export default function CreateEntry({ onSubmit }) {
     </FormStyled>
   )
 }
+const InputStyled = styled.input`
+  display: none;
+`
+
+const ImageUploadStyled = styled(ImageAdd)`
+  height: 20px;
+  color: black;
+  :hover {
+    color: #ec8647;
+  }
+`
+
+const ImageStyled = styled.img`
+  width: 100%;
+`
 
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
 `
 
 const LabelStyled = styled.label`

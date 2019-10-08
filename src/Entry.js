@@ -55,7 +55,7 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
         <EntryBodyStyled>
           {image.map(picture => {
             console.log(picture)
-          return <EntryImageStyled src={picture} alt={title} />
+            return <EntryImageStyled src={picture} />
           })}
           {text}
         </EntryBodyStyled>
@@ -67,7 +67,8 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
 const DeleteStyled = styled(Delete)`
   height: 20px;
   margin: 0 10px;
-  :active {
+  color: black;
+  :hover {
     color: white;
   }
 `
@@ -75,7 +76,8 @@ const DeleteStyled = styled(Delete)`
 const EditIconStyled = styled(Create)`
   height: 20px;
   margin: 0 10px;
-  :active {
+  color: black;
+  :hover {
     color: white;
   }
 `
