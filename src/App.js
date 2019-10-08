@@ -66,7 +66,7 @@ function App() {
             return (
               <EditEntry
                 onSubmit={editEntry}
-                editCardData={props.location.cardData}
+                editEntryData={props.location.entryData}
               />
             )
           }}

@@ -1,16 +1,46 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import styled from 'styled-components/macro'
+import axios from 'axios'
 
-export default function CreateEntry({ onSubmit, editCardData }) {
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
+
+export default function CreateEntry({ onSubmit }) {
+  const [pictures, setPictures] = useState([])
+
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    data.date = formatDate(data.date)
-    onSubmit(data)
-    form.reset()
-    form.title.focus()
+      const data = Object.fromEntries(formData)
+      data.image = pictures
+      data.date = formatDate(data.date)
+      onSubmit(data)
+      form.reset()
+      form.title.focus()
+      
+  }
+
+  function upload(event) {
+//    console.log(file)
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
+    const formData = new FormData()
+
+    formData.append('file', event.target.files[0])
+    formData.append('upload_preset', PRESET)
+
+    axios.post(url, formData, {
+      headers: {
+        'Content-type': 'multipart/form-data'
+      }
+    })
+      .then(response => {
+        setPictures([...pictures, response.data.url])
+      })
+      .catch(err => {
+        console.log(err)
+        alert(err)
+      })
   }
 
   const months = [
@@ -41,23 +71,25 @@ export default function CreateEntry({ onSubmit, editCardData }) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
+      <div>
+        {
+          pictures.map(pictureUrl => <img src={pictureUrl} style={{width: '100%'}} alt='test' />)
+        }
+      </div>
+      <LabelStyled>
+        <input name="image" type="file" onChange={upload} />
+      </LabelStyled>
       <LabelStyled>
         Titel
-        <input
-          name="title"
-        />
+        <input name="title" />
       </LabelStyled>
       <LabelStyled>
         Datum
-        <input name="date" type="date"/>
+        <input name="date" type="date" />
       </LabelStyled>
       <LabelStyled>
         Eintrag
-        <textarea
-          rows="10"
-          cols="33"
-          name="text"
-        />
+        <textarea rows="10" cols="33" name="text" />
       </LabelStyled>
       <ButtonStyled>Eintrag erstellen</ButtonStyled>
     </FormStyled>
