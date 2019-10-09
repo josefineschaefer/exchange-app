@@ -23,3 +23,17 @@ function fetchEntries({ method = 'GET', id = '', data } = {}) {
     },
   }).then(res => res.json())
 }
+
+export function getImages() {
+  return fetchImages()
+}
+
+function fetchImages({ method = 'GET', id = '', data } = {}) {
+  return fetch('/images/' + id, {
+    method,
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then(res => res.json())
+}

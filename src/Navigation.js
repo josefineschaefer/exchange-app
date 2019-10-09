@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { HomeAlt } from 'styled-icons/boxicons-regular'
-import { Create } from 'styled-icons/material/Create'
+import { EditAlt } from 'styled-icons/boxicons-solid/EditAlt'
+import { PhotoAlbum } from 'styled-icons/boxicons-solid/PhotoAlbum'
 
 export default function Navigation() {
   return (
@@ -12,6 +13,9 @@ export default function Navigation() {
       </LinkStyled>
       <LinkStyled to="/create">
         <CreateStyled />
+      </LinkStyled>
+      <LinkStyled to="/gallery">
+      <GalleryStyled/>
       </LinkStyled>
     </NavigationStyled>
   )
@@ -33,9 +37,14 @@ const LinkStyled = styled(NavLink)`
 const HomeStyled = styled(HomeAlt)`
   height: 30px;
 `
-const CreateStyled = styled(Create)`
+const CreateStyled = styled(EditAlt)`
   height: 30px;
 `
+
+const GalleryStyled = styled(PhotoAlbum)`
+height: 30px;
+`
+
 
 const NavigationStyled = styled.nav`
   display: grid;

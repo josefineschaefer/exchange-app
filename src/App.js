@@ -8,6 +8,7 @@ import HomePage from './HomePage'
 import CreateEntry from './CreateEntry'
 import EditEntry from './EditEntry'
 import Navigation from './Navigation'
+import Gallery from './Gallery'
 
 function App() {
   const [entries, setEntries] = useState([])
@@ -71,6 +72,10 @@ function App() {
               />
             )
           }}
+        />
+        <Route
+          path="/gallery"
+          render={() => <Gallery entries={entries}/>} 
         />
         <Navigation />
       </AppStyled>

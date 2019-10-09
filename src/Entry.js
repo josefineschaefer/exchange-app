@@ -24,8 +24,6 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
     deleteData(_id)
   }
 
-  console.log(image)
-
   return (
     <EntryStyled onClick={toggleText}>
       <HeaderStyled>
