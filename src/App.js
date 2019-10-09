@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import HomePage from './HomePage'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
+
+import Header from './Header'
+import HomePage from './HomePage'
 import CreateEntry from './CreateEntry'
 import EditEntry from './EditEntry'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navigation from './Navigation'
-import Header from './Header'
-import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
+import Gallery from './Gallery'
 
 function App() {
   const [entries, setEntries] = useState([])
@@ -33,18 +35,20 @@ function App() {
   }
 
   function editEntry(id, data) {
-    patchEntry(id, data)
-    .then(selectedEntry => {
-        const index = entries.findIndex(entry => entry._id === selectedEntry._id)
-        setEntries([
-          ...entries.slice(0, index),
-          { title: selectedEntry.title, text: selectedEntry.text, date: selectedEntry.date},
-          ...entries.slice(index + 1),
-        ])
-      })
-    }
-    
-  
+    patchEntry(id, data).then(selectedEntry => {
+      const index = entries.findIndex(entry => entry._id === selectedEntry._id)
+      setEntries([
+        ...entries.slice(0, index),
+        {
+          title: selectedEntry.title,
+          text: selectedEntry.text,
+          date: selectedEntry.date
+        },
+        ...entries.slice(index + 1)
+      ])
+    })
+  }
+
   return (
     <Router>
       <AppStyled>
@@ -56,9 +60,7 @@ function App() {
         />
         <Route
           path="/create"
-          render={props => {
-            return <CreateEntry onSubmit={createEntry} />
-          }}
+          render={() => <CreateEntry onSubmit={createEntry} />}
         />
         <Route
           path="/edit"
@@ -66,10 +68,14 @@ function App() {
             return (
               <EditEntry
                 onSubmit={editEntry}
-                editCardData={props.location.cardData}
+                editEntryData={props.location.entryData}
               />
             )
           }}
+        />
+        <Route
+          path="/gallery"
+          render={() => <Gallery entries={entries}/>} 
         />
         <Navigation />
       </AppStyled>

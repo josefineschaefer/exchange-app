@@ -28,6 +28,7 @@ const StyledHomePage = styled.div`
 
 const StyledHeaderImage = styled.img`
   width: 100%;
+  padding: 20px;
 `
 
 const Scroller = styled.div`

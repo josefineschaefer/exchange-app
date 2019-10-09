@@ -3,12 +3,13 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { Create } from 'styled-icons/material/Create'
+import { Delete } from 'styled-icons/material/Delete'
 
 Entry.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   text: PropTypes.string,
-  image: PropTypes.string
+  image: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default function Entry({ title, date, text, image, _id, deleteData }) {
@@ -32,24 +33,28 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
             <NavLink
               to={{
                 pathname: '/edit',
-                cardData: {
+                entryData: {
                   title,
                   date,
-                  text, 
-                  id: _id,
+                  text,
+                  image,
+                  id: _id
                 }
               }}
             >
               <EditIconStyled />
             </NavLink>
-            <DeleteButtonStyled onClick={handleClick}>X</DeleteButtonStyled>
+            <DeleteStyled onClick={handleClick} />
           </div>
         </TitleStyled>
         <DateStyled>{date}</DateStyled>
       </HeaderStyled>
       {isTextVisible && (
         <EntryBodyStyled>
-          <EntryImageStyled src={image} />
+          {image.map(picture => {
+            console.log(picture)
+            return <EntryImageStyled src={picture} />
+          })}
           {text}
         </EntryBodyStyled>
       )}
@@ -57,14 +62,20 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
   )
 }
 
-const DeleteButtonStyled = styled.button`
-  // add styling //
+const DeleteStyled = styled(Delete)`
+  height: 20px;
+  margin: 0 10px;
+  color: black;
+  :hover {
+    color: white;
+  }
 `
 
 const EditIconStyled = styled(Create)`
-  height: 14px;
+  height: 20px;
   margin: 0 10px;
-  :active {
+  color: black;
+  :hover {
     color: white;
   }
 `

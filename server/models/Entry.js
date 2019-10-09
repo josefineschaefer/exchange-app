@@ -7,7 +7,7 @@ const Entry = mongoose.model('Entry', {
     default: Date.now,
   },
   text: String,
-  image: String, 
+  image: Array, 
 
 })
 

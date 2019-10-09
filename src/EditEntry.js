@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import { NavLink } from 'react-router-dom'
 
-export default function EditEntry({ onSubmit, editCardData }) {
+export default function EditEntry({ onSubmit, editEntryData }) {
   function handleSubmit(event) {
     event.preventDefault()
 
-    const newEditCardData = {
+    const newEditEntryData = {
       title,
       date,
       text
     }
-    editCardData.date = formatDate(editCardData.date)
-    onSubmit(editCardData.id, newEditCardData)
+    editEntryData.date = formatDate(editEntryData.date)
+    onSubmit(editEntryData.id, newEditEntryData)
   }
   const months = [
     'Jan',
@@ -40,9 +39,9 @@ export default function EditEntry({ onSubmit, editCardData }) {
     return formattedDate
   }
 
-  const [title, setTitle] = useState(editCardData.title)
-  const [date, setDate] = useState(editCardData.date)
-  const [text, setText] = useState(editCardData.text)
+  const [title, setTitle] = useState(editEntryData.title)
+  const [date, setDate] = useState(editEntryData.date)
+  const [text, setText] = useState(editEntryData.text)
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -73,7 +72,7 @@ export default function EditEntry({ onSubmit, editCardData }) {
           onChange={event => setText(event.target.value)}
         />
       </LabelStyled>
-        <ButtonStyled>Änderungen speichern</ButtonStyled>
+      <ButtonStyled>Änderungen speichern</ButtonStyled>
     </FormStyled>
   )
 }
