@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+EditEntry.propTypes = {
+  onSubmit: PropTypes.func,
+  editEntryData:PropTypes.func
+}
 
 export default function EditEntry({ onSubmit, editEntryData }) {
   function handleSubmit(event) {

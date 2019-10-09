@@ -2,6 +2,13 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import worldmap from './images/worldmap.png'
 import Entry from './Entry'
+import PropTypes from 'prop-types'
+
+Homepage.propTypes = {
+  entries: PropTypes.array,
+  deleteData: PropTypes.func,
+  editData: PropTypes.func
+}
 
 export default function Homepage({ entries, deleteData, editData }) {
   return (

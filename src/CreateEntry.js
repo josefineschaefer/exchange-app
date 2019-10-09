@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import { ImageAdd } from 'styled-icons/boxicons-regular/ImageAdd'
+import PropTypes from 'prop-types'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
+
+CreateEntry.propTypes = {
+  onSubmit: PropTypes.func
+}
 
 export default function CreateEntry({ onSubmit }) {
   const [pictures, setPictures] = useState([])
