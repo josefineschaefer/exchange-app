@@ -1,5 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+Gallery.propTypes = {
+  image: PropTypes.arrayOf(PropTypes.string)
+}
 
 export default function Gallery({ entries }) {
   const allImages = entries.map(entry => entry.image)
