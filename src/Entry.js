@@ -7,12 +7,18 @@ import { Delete } from 'styled-icons/material/Delete'
 
 Entry.propTypes = {
   title: PropTypes.string,
-  date: PropTypes.string,
   text: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.string)
 }
 
-export default function Entry({ title, date, text, image, _id, deleteData }) {
+export default function Entry({
+  title,
+  fullDate,
+  text,
+  image,
+  _id,
+  deleteData
+}) {
   const [isTextVisible, setIsTextVisible] = useState(false)
 
   function toggleText() {
@@ -35,7 +41,7 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
                 pathname: '/edit',
                 entryData: {
                   title,
-                  date,
+                  fullDate,
                   text,
                   image,
                   id: _id
@@ -47,7 +53,7 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
             <DeleteStyled onClick={handleClick} />
           </div>
         </TitleStyled>
-        <DateStyled>{date}</DateStyled>
+        <DateStyled>{renderableDate(fullDate)}</DateStyled>
       </HeaderStyled>
       {isTextVisible && (
         <EntryBodyStyled>
@@ -60,6 +66,15 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
       )}
     </EntryStyled>
   )
+
+  function renderableDate(fullDate) {
+    const newDate = new Date(fullDate).toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+    return newDate
+  }
 }
 const DeleteStyled = styled(Delete)`
   height: 20px;

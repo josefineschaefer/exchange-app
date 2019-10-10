@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const Entry = mongoose.model('Entry', {
   title: String,
-  date: {
-    type: String, 
+  fullDate: {
+    type: Object, 
     default: Date.now,
   },
   text: String,
