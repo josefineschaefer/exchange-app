@@ -23,13 +23,13 @@ export default function CreateEntry({ onSubmit }) {
     data.date = formatDate(data.date)
     onSubmit(data)
     form.reset()
+    setPictures([])
     form.title.focus()
   }
 
   function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
     const formData = new FormData()
-
     formData.append('file', event.target.files[0])
     formData.append('upload_preset', PRESET)
 
@@ -84,7 +84,7 @@ export default function CreateEntry({ onSubmit }) {
       <LabelStyled>
         Füge Bilder hinzu
         <ImageUploadStyled />
-        <InputStyled name="image" type="file" onChange={upload} />
+        <InputStyled name="image" id="imageUpload" type="file" onChange={upload} />
       </LabelStyled>
       <LabelStyled>
         Titel

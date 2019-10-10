@@ -1,0 +1,54 @@
+const DeleteStyled = styled(Delete)`
+  height: 20px;
+  color: black;
+  :hover {
+    color: white;
+  }
+`
+
+const EditIconStyled = styled(Create)`
+  height: 16px;
+  margin: 0 5px;
+  color: black;
+  :hover {
+    color: white;
+  }
+`
+
+const EntryStyled = styled.div`
+  border-radius: 5px;
+  box-shadow: 0 10px 10px #0002;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+`
+const HeaderStyled = styled.div`
+  font-weight: bold;
+  background-color: #ec8647;
+  padding: 20px;
+  border-radius: 5px 5px 5px 5px;
+  display: grid;
+`
+
+const TitleStyled = styled.span`
+  font-size: 1em;
+  text-align: left;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`
+
+const DateStyled = styled.span`
+  font-size: 14px;
+`
+
+const EntryBodyStyled = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 0 0 5px 5px;
+`
+
+const EntryImageStyled = styled.img`
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+`

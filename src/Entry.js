@@ -28,8 +28,8 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
     <EntryStyled onClick={toggleText}>
       <HeaderStyled>
         <TitleStyled>
+          <span>{title}</span>
           <div>
-            {title}
             <NavLink
               to={{
                 pathname: '/edit',
@@ -61,19 +61,16 @@ export default function Entry({ title, date, text, image, _id, deleteData }) {
     </EntryStyled>
   )
 }
-
 const DeleteStyled = styled(Delete)`
   height: 20px;
-  margin: 0 10px;
   color: black;
   :hover {
     color: white;
   }
 `
-
 const EditIconStyled = styled(Create)`
-  height: 20px;
-  margin: 0 10px;
+  height: 16px;
+  margin: 0 5px;
   color: black;
   :hover {
     color: white;
@@ -83,26 +80,27 @@ const EditIconStyled = styled(Create)`
 const EntryStyled = styled.div`
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
-  margin: 10px;
+  margin: 5px;
   display: flex;
   flex-direction: column;
 `
 const HeaderStyled = styled.div`
-  font-weight: bold;
   background-color: #ec8647;
   padding: 20px;
   border-radius: 5px 5px 5px 5px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
 `
 
 const TitleStyled = styled.span`
-  font-size: 1em;
+  font-size: 1.5em;
   text-align: left;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `
 
 const DateStyled = styled.span`
-  text-align: right;
+  font-size: 16px;
 `
 
 const EntryBodyStyled = styled.div`

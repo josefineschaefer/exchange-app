@@ -9,7 +9,6 @@ Gallery.propTypes = {
 export default function Gallery({ entries }) {
   const allImages = entries.map(entry => entry.image)
 
-  console.log(allImages)
   return (
     <GalleryStyled>
       <>
@@ -24,8 +23,10 @@ export default function Gallery({ entries }) {
 const GalleryStyled = styled.div`
   display: grid;
   overflow-y: auto;
+  margin-top: -4px;
 `
 
 const ImageStyled = styled.img`
   width: 100%;
+  padding: 2.5px 5px;
 `
