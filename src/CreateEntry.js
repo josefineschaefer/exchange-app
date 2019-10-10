@@ -84,7 +84,12 @@ export default function CreateEntry({ onSubmit }) {
       <LabelStyled>
         Füge Bilder hinzu
         <ImageUploadStyled />
-        <InputStyled name="image" id="imageUpload" type="file" onChange={upload} />
+        <InputStyled
+          name="image"
+          id="imageUpload"
+          type="file"
+          onChange={upload}
+        />
       </LabelStyled>
       <LabelStyled>
         Titel
@@ -107,7 +112,7 @@ const InputStyled = styled.input`
 `
 
 const ImageUploadStyled = styled(ImageAdd)`
-  height: 20px;
+  height: 30px;
   color: black;
   :hover {
     color: #ec8647;

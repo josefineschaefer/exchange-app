@@ -7,7 +7,7 @@ Gallery.propTypes = {
 }
 
 export default function Gallery({ entries }) {
-  const allImages = entries.map(entry => entry.image)
+  const allImages = entries.map(entry => entry.image).join(',').split(',')
 
   return (
     <GalleryStyled>
