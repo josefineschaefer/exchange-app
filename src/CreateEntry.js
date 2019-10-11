@@ -22,12 +22,11 @@ export default function CreateEntry({ onSubmit }) {
     const formData = new FormData(form)
     let fullDate = new Date(date)
     let data = Object.fromEntries(formData)
-    // data.image = pictures
     data = {
-      ...data, 
-      fullDate
+      ...data,
+      fullDate,
+      image: pictures,
     }
-    // data.date = formatDate(data.date)
     onSubmit(data)
     form.reset()
     setPictures([])
@@ -55,34 +54,6 @@ export default function CreateEntry({ onSubmit }) {
       })
   }
 
-  // const months = [
-  //   'Jan',
-  //   'Feb',
-  //   'März',
-  //   'Apr',
-  //   'Mai',
-  //   'Juni',
-  //   'Juli',
-  //   'Aug',
-  //   'Sept',
-  //   'Okt',
-  //   'Nov',
-  //   'Dez'
-  // ]
-
-  // function formatDate(date) {
-  //   const newDate = new Date(date)
-  //   const formattedDate =
-  //     newDate.getDate() +
-  //     '. ' +
-  //     months[newDate.getMonth()] +
-  //     ' ' +
-  //     newDate.getFullYear()
-  //   return formattedDate
-  // }
-
-  console.log(date)
-
   return (
     <FormStyled onSubmit={handleSubmit}>
       <>
@@ -106,7 +77,6 @@ export default function CreateEntry({ onSubmit }) {
       </LabelStyled>
       <LabelStyled>
         Datum
-        <input name="date" type="date" />
         <MyDatePicker name="date" date={date} onChange={handleDateChange} />
       </LabelStyled>
       <LabelStyled>

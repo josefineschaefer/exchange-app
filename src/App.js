@@ -18,6 +18,7 @@ function App() {
   }, [])
 
   function createEntry(entryData) {
+    console.log(entryData)
     postEntry(entryData).then(entry => {
       setEntries([...entries, entry])
     })
@@ -33,6 +34,7 @@ function App() {
       ])
     })
   }
+
 
   function editEntry(id, data) {
     patchEntry(id, data).then(selectedEntry => {
