@@ -58,7 +58,6 @@ export default function Entry({
       {isTextVisible && (
         <EntryBodyStyled>
           {image.map(picture => {
-            console.log(picture)
             return <EntryImageStyled src={picture} />
           })}
           {text}

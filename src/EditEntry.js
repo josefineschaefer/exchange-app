@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import MyDatePicker from './MyDatePicker'
 
 EditEntry.propTypes = {
   onSubmit: PropTypes.func,
-  editEntryData:PropTypes.func
+  editEntryData: PropTypes.object
 }
 
 export default function EditEntry({ onSubmit, editEntryData }) {
@@ -12,42 +13,20 @@ export default function EditEntry({ onSubmit, editEntryData }) {
     event.preventDefault()
 
     const newEditEntryData = {
+      ...editEntryData,
       title,
-      date,
+      fullDate,
       text
     }
-    editEntryData.date = formatDate(editEntryData.date)
     onSubmit(editEntryData.id, newEditEntryData)
   }
-  const months = [
-    'Jan',
-    'Feb',
-    'März',
-    'Apr',
-    'Mai',
-    'Juni',
-    'Juli',
-    'Aug',
-    'Sept',
-    'Okt',
-    'Nov',
-    'Dez'
-  ]
 
-  function formatDate(date) {
-    const newDate = new Date(date)
-    const formattedDate =
-      newDate.getDate() +
-      '. ' +
-      months[newDate.getMonth()] +
-      ' ' +
-      newDate.getFullYear()
-    return formattedDate
-  }
-
+  const newDate = new Date(editEntryData.fullDate)
   const [title, setTitle] = useState(editEntryData.title)
-  const [date, setDate] = useState(editEntryData.date)
+  const [fullDate, setFullDate] = useState(newDate)
   const [text, setText] = useState(editEntryData.text)
+
+  console.log(fullDate)
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -61,12 +40,12 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       </LabelStyled>
       <LabelStyled>
         Datum
-        <input
+        <MyDatePicker
           name="date"
-          type="date"
-          value={date}
-          onChange={event => setDate(event.target.value)}
-        />
+          value={fullDate}
+          date={fullDate}
+          onChange={value => setFullDate(value)}
+        ></MyDatePicker>
       </LabelStyled>
       <LabelStyled>
         Eintrag
