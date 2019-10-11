@@ -2,29 +2,41 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import { ImageAdd } from 'styled-icons/boxicons-regular/ImageAdd'
+import PropTypes from 'prop-types'
+import MyDatePicker from './MyDatePicker'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 
+CreateEntry.propTypes = {
+  onSubmit: PropTypes.func
+}
+
 export default function CreateEntry({ onSubmit }) {
   const [pictures, setPictures] = useState([])
+  const [date, setDate] = useState(Date.now())
 
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    data.image = pictures
-    data.date = formatDate(data.date)
+    let fullDate = new Date(date)
+    let data = Object.fromEntries(formData)
+    // data.image = pictures
+    data = {
+      ...data, 
+      fullDate
+    }
+    // data.date = formatDate(data.date)
     onSubmit(data)
     form.reset()
+    setPictures([])
     form.title.focus()
   }
 
   function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
     const formData = new FormData()
-
     formData.append('file', event.target.files[0])
     formData.append('upload_preset', PRESET)
 
@@ -43,31 +55,33 @@ export default function CreateEntry({ onSubmit }) {
       })
   }
 
-  const months = [
-    'Jan',
-    'Feb',
-    'März',
-    'Apr',
-    'Mai',
-    'Juni',
-    'Juli',
-    'Aug',
-    'Sept',
-    'Okt',
-    'Nov',
-    'Dez'
-  ]
+  // const months = [
+  //   'Jan',
+  //   'Feb',
+  //   'März',
+  //   'Apr',
+  //   'Mai',
+  //   'Juni',
+  //   'Juli',
+  //   'Aug',
+  //   'Sept',
+  //   'Okt',
+  //   'Nov',
+  //   'Dez'
+  // ]
 
-  function formatDate(date) {
-    const newDate = new Date(date)
-    const formattedDate =
-      newDate.getDate() +
-      '. ' +
-      months[newDate.getMonth()] +
-      ' ' +
-      newDate.getFullYear()
-    return formattedDate
-  }
+  // function formatDate(date) {
+  //   const newDate = new Date(date)
+  //   const formattedDate =
+  //     newDate.getDate() +
+  //     '. ' +
+  //     months[newDate.getMonth()] +
+  //     ' ' +
+  //     newDate.getFullYear()
+  //   return formattedDate
+  // }
+
+  console.log(date)
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -79,7 +93,12 @@ export default function CreateEntry({ onSubmit }) {
       <LabelStyled>
         Füge Bilder hinzu
         <ImageUploadStyled />
-        <InputStyled name="image" type="file" onChange={upload} />
+        <InputStyled
+          name="image"
+          id="imageUpload"
+          type="file"
+          onChange={upload}
+        />
       </LabelStyled>
       <LabelStyled>
         Titel
@@ -88,6 +107,7 @@ export default function CreateEntry({ onSubmit }) {
       <LabelStyled>
         Datum
         <input name="date" type="date" />
+        <MyDatePicker name="date" date={date} onChange={handleDateChange} />
       </LabelStyled>
       <LabelStyled>
         Eintrag
@@ -96,13 +116,16 @@ export default function CreateEntry({ onSubmit }) {
       <ButtonStyled>Eintrag erstellen</ButtonStyled>
     </FormStyled>
   )
+  function handleDateChange(value) {
+    setDate(value)
+  }
 }
 const InputStyled = styled.input`
   display: none;
 `
 
 const ImageUploadStyled = styled(ImageAdd)`
-  height: 20px;
+  height: 30px;
   color: black;
   :hover {
     color: #ec8647;
