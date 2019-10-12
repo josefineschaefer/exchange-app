@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import worldmap from './images/worldmap.png'
-import Entry from './Entry'
+import worldmap from '../images/worldmap.png'
+import Entry from '../components/Entry'
 import PropTypes from 'prop-types'
 
 Homepage.propTypes = {

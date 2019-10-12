@@ -4,11 +4,11 @@ import styled from 'styled-components/macro'
 import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
 
 import Header from './Header'
-import HomePage from './HomePage'
+import HomePage from './pages/HomePage'
 import CreateEntry from './CreateEntry'
 import EditEntry from './EditEntry'
 import Navigation from './Navigation'
-import Gallery from './Gallery'
+import Gallery from './pages/Gallery'
 
 function App() {
   const [entries, setEntries] = useState([])

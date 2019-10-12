@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import MyDatePicker from './MyDatePicker'
+import EntryDatePicker from './components/EntryDatePicker'
 
 EditEntry.propTypes = {
   onSubmit: PropTypes.func,
@@ -40,12 +40,12 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       </LabelStyled>
       <LabelStyled>
         Datum
-        <MyDatePicker
+        <EntryDatePicker
           name="date"
           value={fullDate}
           date={fullDate}
           onChange={value => setFullDate(value)}
-        ></MyDatePicker>
+        ></EntryDatePicker>
       </LabelStyled>
       <LabelStyled>
         Eintrag

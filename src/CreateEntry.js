@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import axios from 'axios'
 import { ImageAdd } from 'styled-icons/boxicons-regular/ImageAdd'
 import PropTypes from 'prop-types'
-import MyDatePicker from './MyDatePicker'
+import EntryDatePicker from './components/EntryDatePicker'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -77,7 +77,7 @@ export default function CreateEntry({ onSubmit }) {
       </LabelStyled>
       <LabelStyled>
         Datum
-        <MyDatePicker name="date" date={date} onChange={handleDateChange} />
+        <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
       </LabelStyled>
       <LabelStyled>
         Eintrag
