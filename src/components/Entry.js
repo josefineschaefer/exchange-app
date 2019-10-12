@@ -7,7 +7,10 @@ import EntryBody from './EntryBody'
 Entry.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
-  image: PropTypes.arrayOf(PropTypes.string)
+  image: PropTypes.arrayOf(PropTypes.string),
+  deleteData: PropTypes.func
+  // fullDate: PropTypes.instanceOf(Date)
+  // _id: PropTypes.string
 }
 
 export default function Entry({

@@ -1,10 +1,17 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
-import { Create } from 'styled-icons/material/Create'
-import { Delete } from 'styled-icons/material/Delete'
+import EditBtn from './EditBtn'
+import DeleteBtn from './DeleteBtn'
+import EntryDate from './EntryDate'
 
+EntryHeader.propTypes = {
+  title: PropTypes.string,
+  deleteData: PropTypes.func
+  // _id: PropTypes.string,
+  // fullDate: PropTypes.???
+}
 
 export default function EntryHeader({
   title,
@@ -14,20 +21,6 @@ export default function EntryHeader({
   text,
   image
 }){
-
-  function handleClick(event) {
-    event.stopPropagation()
-    deleteData(_id)
-  }
-
-  function renderableDate(fullDate) {
-    const newDate = new Date(fullDate).toLocaleDateString('de-DE', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    })
-    return newDate
-  }
 
 return (
   <HeaderStyled>
@@ -46,12 +39,14 @@ return (
         }
       }}
     >
-      <EditIconStyled />
+      <EditBtn />
     </NavLink>
-    <DeleteStyled onClick={handleClick} />
+    <DeleteBtn 
+      deleteData={deleteData} 
+      _id={_id}></DeleteBtn>
   </div>
 </TitleStyled>
-<DateStyled>{renderableDate(fullDate)}</DateStyled>
+<EntryDate fullDate={fullDate}></EntryDate>
 </HeaderStyled>
 )
 }
@@ -63,24 +58,6 @@ const HeaderStyled = styled.div`
   display: grid;
 `
 
-const DeleteStyled = styled(Delete)`
-  height: 20px;
-  color: black;
-  :hover {
-    color: white;
-  }
-`
-const EditIconStyled = styled(Create)`
-  height: 16px;
-  margin: 0 5px;
-  color: black;
-  :hover {
-    color: white;
-  }
-`
-const DateStyled = styled.span`
-  font-size: 16px;
-`
 const TitleStyled = styled.span`
   font-size: 1.5em;
   text-align: left;

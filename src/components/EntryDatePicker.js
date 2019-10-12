@@ -8,10 +8,8 @@ registerLocale('de', de)
 
 EntryDatePicker.propTypes = {
   date: PropTypes.number,
-  onChange: PropTypes.func,
-
+  onChange: PropTypes.func
 }
-
 
 export default function EntryDatePicker({ date, onChange }) {
   return (
