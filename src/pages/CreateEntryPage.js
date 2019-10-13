@@ -83,6 +83,14 @@ export default function CreateEntry({ onSubmit }) {
         Datum
         <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
       </Label>
+      <TagLabel>
+      Gastamiie
+        <input type="checkbox" ></input>
+      Schule
+        <input type="checkbox" ></input>
+      Ausflug
+        <input type="checkbox" ></input>
+      </TagLabel>
       <Label>
         Eintrag
         <textarea rows="10" cols="33" name="text" />
@@ -109,4 +117,7 @@ const InputStyled = styled.input`
 `
 const ImageStyled = styled.img`
   width: 100%;
+`
+const TagLabel = styled.span`
+margin-right: 5px;
 `

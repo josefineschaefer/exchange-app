@@ -3,12 +3,13 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import EntryHeader from './EntryHeader'
 import EntryBody from './EntryBody'
+import Tag from './Tag'
 
 Entry.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.string),
-  deleteData: PropTypes.func
+  deleteData: PropTypes.func, 
   // fullDate: PropTypes.instanceOf(Date)
   // _id: PropTypes.string
 }
@@ -19,7 +20,8 @@ export default function Entry({
   text,
   _id,
   deleteData,
-  image
+  image, 
+  tags
 }) 
 {
   const [isTextVisible, setIsTextVisible] = useState(false)
@@ -38,8 +40,10 @@ export default function Entry({
       {isTextVisible && (
         <EntryBody 
         text={text} 
-        image={image}></EntryBody>
+        image={image}>
+        </EntryBody>
       )}
+    {tags && tags.map(tag => <Tag text={tag}/>)}
     </EntryStyled>
   )
         }

@@ -8,7 +8,7 @@ const Entry = mongoose.model('Entry', {
   },
   text: String,
   image: Array, 
-
+  tags: [String]
 })
 
 module.exports = Entry
