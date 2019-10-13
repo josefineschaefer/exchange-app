@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
 
-import Header from './Header'
+import Header from './common/Header'
 import HomePage from './pages/HomePage'
-import CreateEntry from './CreateEntry'
-import EditEntry from './EditEntry'
-import Navigation from './Navigation'
-import Gallery from './pages/Gallery'
+import CreateEntry from './pages/CreateEntryPage'
+import EditEntry from './pages/EditEntryPage'
+import Navigation from './common/Navigation'
+import Gallery from './pages/GalleryPage'
 
 function App() {
   const [entries, setEntries] = useState([])
@@ -34,7 +34,6 @@ function App() {
       ])
     })
   }
-
 
   function editEntry(id, data) {
     patchEntry(id, data).then(selectedEntry => {
@@ -75,10 +74,7 @@ function App() {
             )
           }}
         />
-        <Route
-          path="/gallery"
-          render={() => <Gallery entries={entries}/>} 
-        />
+        <Route path="/gallery" render={() => <Gallery entries={entries} />} />
         <Navigation />
       </AppStyled>
     </Router>

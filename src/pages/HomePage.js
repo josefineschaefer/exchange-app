@@ -11,17 +11,21 @@ Homepage.propTypes = {
 }
 
 export default function Homepage({ entries, deleteData, editData }) {
+
   return (
     <StyledHomePage>
       <StyledHeaderImage src={worldmap} />
       <Scroller>
-        {entries.map(entry => (
-          <Entry
-            {...entry}
-            key={entry._id}
-            deleteData={deleteData}
-            editData={editData}
-          />
+        {entries
+        .slice()
+        .sort((a,b)=> new Date(a.fullDate) - new Date(b.fullDate))
+        .map(entry => (
+        <Entry
+          {...entry}
+          key={entry._id}
+          deleteData={deleteData}
+          editData={editData}
+        />
         ))}
       </Scroller>
     </StyledHomePage>
