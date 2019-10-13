@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import axios from 'axios'
-import { ImageAdd } from 'styled-icons/boxicons-regular/ImageAdd'
 import PropTypes from 'prop-types'
-import MyDatePicker from './MyDatePicker'
+import EntryDatePicker from '../components/EntryDatePicker'
+import Button from '../components/Button'
+import AddImageBtn from '../components/AddImageBtn'
+import Label from '../components/Label'
+// import ImageUpload from '../components/ImageUpload'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -25,7 +28,7 @@ export default function CreateEntry({ onSubmit }) {
     data = {
       ...data,
       fullDate,
-      image: pictures,
+      image: pictures
     }
     onSubmit(data)
     form.reset()
@@ -56,55 +59,41 @@ export default function CreateEntry({ onSubmit }) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
+      {/* <ImageUpload /> */}
       <>
         {pictures.map(pictureUrl => (
           <ImageStyled src={pictureUrl} alt="" />
         ))}
       </>
-      <LabelStyled>
+      <Label>
         Füge Bilder hinzu
-        <ImageUploadStyled />
+        <AddImageBtn />
         <InputStyled
           name="image"
           id="imageUpload"
           type="file"
           onChange={upload}
         />
-      </LabelStyled>
-      <LabelStyled>
+      </Label>
+      <Label>
         Titel
         <input name="title" />
-      </LabelStyled>
-      <LabelStyled>
+      </Label>
+      <Label>
         Datum
-        <MyDatePicker name="date" date={date} onChange={handleDateChange} />
-      </LabelStyled>
-      <LabelStyled>
+        <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
+      </Label>
+      <Label>
         Eintrag
         <textarea rows="10" cols="33" name="text" />
-      </LabelStyled>
-      <ButtonStyled>Eintrag erstellen</ButtonStyled>
+      </Label>
+      <Button>Eintrag erstellen</Button>
     </FormStyled>
   )
   function handleDateChange(value) {
     setDate(value)
   }
 }
-const InputStyled = styled.input`
-  display: none;
-`
-
-const ImageUploadStyled = styled(ImageAdd)`
-  height: 30px;
-  color: black;
-  :hover {
-    color: #ec8647;
-  }
-`
-
-const ImageStyled = styled.img`
-  width: 100%;
-`
 
 const FormStyled = styled.form`
   display: flex;
@@ -115,19 +104,9 @@ const FormStyled = styled.form`
   margin-bottom: 20px;
 `
 
-const LabelStyled = styled.label`
-  font-weight: bold;
-  display: grid;
-  gap: 10px;
+const InputStyled = styled.input`
+  display: none;
 `
-
-const ButtonStyled = styled.button`
-  border: none;
-  padding: 20px;
-  background: #ec8647;
-  font-weight: bold;
-  border-radius: 5px;
-  box-shadow: 0 10px 10px #0002;
-  font-size: 1em;
-  height: 60px;
+const ImageStyled = styled.img`
+  width: 100%;
 `

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import MyDatePicker from './MyDatePicker'
+import EntryDatePicker from '../components/EntryDatePicker'
+import Label from '../components/Label'
+import Button from '../components/Button'
 
 EditEntry.propTypes = {
   onSubmit: PropTypes.func,
@@ -26,28 +28,26 @@ export default function EditEntry({ onSubmit, editEntryData }) {
   const [fullDate, setFullDate] = useState(newDate)
   const [text, setText] = useState(editEntryData.text)
 
-  console.log(fullDate)
-
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <LabelStyled>
+      <Label>
         Titel
         <input
           name="title"
           value={title}
           onChange={event => setTitle(event.target.value)}
         />
-      </LabelStyled>
-      <LabelStyled>
+      </Label>
+      <Label>
         Datum
-        <MyDatePicker
+        <EntryDatePicker
           name="date"
           value={fullDate}
           date={fullDate}
           onChange={value => setFullDate(value)}
-        ></MyDatePicker>
-      </LabelStyled>
-      <LabelStyled>
+        ></EntryDatePicker>
+      </Label>
+      <Label>
         Eintrag
         <textarea
           rows="10"
@@ -56,8 +56,8 @@ export default function EditEntry({ onSubmit, editEntryData }) {
           value={text}
           onChange={event => setText(event.target.value)}
         />
-      </LabelStyled>
-      <ButtonStyled>Änderungen speichern</ButtonStyled>
+      </Label>
+      <Button>Änderungen speichern</Button>
     </FormStyled>
   )
 }
@@ -67,21 +67,4 @@ const FormStyled = styled.form`
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-`
-
-const LabelStyled = styled.label`
-  font-weight: bold;
-  display: grid;
-  gap: 10px;
-`
-
-const ButtonStyled = styled.button`
-  border: none;
-  padding: 20px;
-  background: #ec8647;
-  font-weight: bold;
-  border-radius: 5px;
-  box-shadow: 0 10px 10px #0002;
-  font-size: 1em;
-  height: 60px;
 `
