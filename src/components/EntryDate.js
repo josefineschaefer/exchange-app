@@ -6,8 +6,7 @@ import styled from 'styled-components/macro'
 //   fullDate: PropTypes.?
 // }
 
-export default function EntryDate({fullDate}) {
-  
+export default function EntryDate({ fullDate }) {
   function renderableDate(fullDate) {
     const newDate = new Date(fullDate).toLocaleDateString('de-DE', {
       year: 'numeric',
@@ -17,11 +16,12 @@ export default function EntryDate({fullDate}) {
     return newDate
   }
 
-  return (
-  <DateStyled>{renderableDate(fullDate)}</DateStyled>
-  )
+  return <DateStyled>{renderableDate(fullDate)}</DateStyled>
 }
 
 const DateStyled = styled.span`
   font-size: 16px;
+  padding: 2px;
+  display: block;
+  height: 30px;
 `

@@ -90,29 +90,29 @@ export default function CreateEntry({ onSubmit }) {
         Datum
         <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
       </Label>
-      <TagLabel name="tag">
+      <div>
         Gastfamilie
-        <input
+        <CheckOptionsStyled
           type="checkbox"
           name="tag"
           value="Gastfamilie"
           onClick={event => handleCheck(event)}
-        ></input>
+        ></CheckOptionsStyled>
         Schule
-        <input
+        <CheckOptionsStyled
           type="checkbox"
           name="tag"
           value="Schule"
           onClick={event => handleCheck(event)}
-        ></input>
+        ></CheckOptionsStyled>
         Ausflug
-        <input
+        <CheckOptionsStyled
           type="checkbox"
           name="tag"
           value="Ausflug"
           onClick={event => handleCheck(event)}
-        ></input>
-      </TagLabel>
+        ></CheckOptionsStyled>
+      </div>
       <Label>
         Eintrag
         <textarea rows="10" cols="33" name="text" />
@@ -144,6 +144,6 @@ const InputStyled = styled.input`
 const ImageStyled = styled.img`
   width: 100%;
 `
-const TagLabel = styled.span`
-  margin-right: 5px;
+const CheckOptionsStyled = styled.input`
+  margin-right: 20px;
 `

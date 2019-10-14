@@ -11,9 +11,8 @@ export default function Tag({ tag }) {
 }
 
 const TagStyled = styled.span`
-  padding: 2px;
-  background: #ccc;
-  border: 1px solid #ccc;
+  padding: 4px;
   border-radius: 3px;
-  margin-right: 10px;
+  margin-right: 5px;
+  background-color: #f4c3a4;
 `

@@ -45,8 +45,7 @@ console.log('result', newArray)
         deleteData={deleteData}
         _id={_id}
       >
-        {/* <Tag tag={tag}></Tag>  */}
-        {newArray && newArray.map(tag => <Tag tag={tag} />)}
+        <div>{newArray && newArray.map(tag => <Tag tag={tag} />)}</div>
       </EntryHeader>
       {isTextVisible && <EntryBody text={text} image={image}></EntryBody>}
     </EntryStyled>

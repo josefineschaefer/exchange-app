@@ -15,52 +15,49 @@ EntryHeader.propTypes = {
 
 export default function EntryHeader({
   title,
-  fullDate, 
-  deleteData, 
+  fullDate,
+  deleteData,
   _id,
   text,
-  image, 
+  image,
   children
-}){
-
-return (
-  <HeaderStyled>
-<TitleStyled>
-  <span>{title}</span>
-  <div>
-    <NavLink
-      to={{
-        pathname: '/edit',
-        entryData: {
-          title,
-          fullDate,
-          text,
-          image,
-          id: _id
-        }
-      }}
-    >
-      <EditBtn />
-    </NavLink>
-    <DeleteBtn 
-      deleteData={deleteData} 
-      _id={_id}></DeleteBtn>
-  </div>
-</TitleStyled>
-<EntryDate fullDate={fullDate}></EntryDate>
-{children}
-</HeaderStyled>
-)
+}) {
+  return (
+    <HeaderStyled>
+      <TitleStyled>
+        <span>{title}</span>
+        <div>
+          <NavLink
+            to={{
+              pathname: '/edit',
+              entryData: {
+                title,
+                fullDate,
+                text,
+                image,
+                id: _id
+              }
+            }}
+          >
+            <EditBtn />
+          </NavLink>
+          <DeleteBtn deleteData={deleteData} _id={_id}></DeleteBtn>
+        </div>
+      </TitleStyled>
+      <EntryDate fullDate={fullDate}></EntryDate>
+      {children}
+    </HeaderStyled>
+  )
 }
 
 const HeaderStyled = styled.div`
   background-color: #ec8647;
   padding: 20px;
   border-radius: 5px 5px 5px 5px;
-  display: grid;
+  
 `
 
-const TitleStyled = styled.span`
+const TitleStyled = styled.div`
   font-size: 1.5em;
   text-align: left;
   display: flex;
