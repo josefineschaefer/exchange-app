@@ -19,7 +19,8 @@ export default function EntryHeader({
   deleteData, 
   _id,
   text,
-  image
+  image, 
+  children
 }){
 
 return (
@@ -47,6 +48,7 @@ return (
   </div>
 </TitleStyled>
 <EntryDate fullDate={fullDate}></EntryDate>
+{children}
 </HeaderStyled>
 )
 }

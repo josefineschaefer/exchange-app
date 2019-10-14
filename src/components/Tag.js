@@ -6,13 +6,13 @@ Tag.propTypes = {
   text: PropTypes.string
 }
 
-export default function Tag({ text }) {
-  return <TagStyled>{text}</TagStyled>
+export default function Tag({ tag }) {
+  return <TagStyled>{tag}</TagStyled>
 }
 
-const TagStyled = styled.div`
+const TagStyled = styled.span`
   padding: 2px;
-  background: #eee;
+  background: #ccc;
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-right: 10px;

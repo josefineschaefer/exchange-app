@@ -9,7 +9,7 @@ Entry.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.string),
-  deleteData: PropTypes.func, 
+  deleteData: PropTypes.func
   // fullDate: PropTypes.instanceOf(Date)
   // _id: PropTypes.string
 }
@@ -20,33 +20,38 @@ export default function Entry({
   text,
   _id,
   deleteData,
-  image, 
+  image,
   tags
-}) 
-{
+}) {
   const [isTextVisible, setIsTextVisible] = useState(false)
   function toggleText() {
     setIsTextVisible(!isTextVisible)
   }
 
+const arrayOfTags = Object.keys(tags).map(function(key) {
+  return [(key),tags[key]]
+})
+console.log(arrayOfTags)
+
+const newArray = arrayOfTags.filter(item => item.includes(true)).map(item=> item[0])
+console.log('result', newArray)
+
+
   return (
     <EntryStyled onClick={toggleText}>
-      <EntryHeader 
-      title={title} 
-      fullDate={fullDate} 
-      deleteData={deleteData} 
-      _id={_id}
-  ></EntryHeader>
-      {isTextVisible && (
-        <EntryBody 
-        text={text} 
-        image={image}>
-        </EntryBody>
-      )}
-    {tags && tags.map(tag => <Tag text={tag}/>)}
+      <EntryHeader
+        title={title}
+        fullDate={fullDate}
+        deleteData={deleteData}
+        _id={_id}
+      >
+        {/* <Tag tag={tag}></Tag>  */}
+        {newArray && newArray.map(tag => <Tag tag={tag} />)}
+      </EntryHeader>
+      {isTextVisible && <EntryBody text={text} image={image}></EntryBody>}
     </EntryStyled>
   )
-        }
+}
 
 const EntryStyled = styled.div`
   border-radius: 5px;
