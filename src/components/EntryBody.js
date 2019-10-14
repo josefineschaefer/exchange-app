@@ -3,22 +3,18 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 EntryBody.propTypes = {
-  text: PropTypes.string, 
+  text: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.string)
 }
 
-export default function EntryBody({
-  text,
-  image
-}){
-
-  return(
+export default function EntryBody({ text, image }) {
+  return (
     <EntryBodyStyled>
-    {image.map(picture => {
-      return <EntryImageStyled src={picture} />
-    })}
-    {text}
-  </EntryBodyStyled>
+      {image.map(picture => {
+        return <EntryImageStyled src={picture} />
+      })}
+      {text}
+    </EntryBodyStyled>
   )
 }
 

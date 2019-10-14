@@ -6,6 +6,7 @@ import EntryDatePicker from '../components/EntryDatePicker'
 import Button from '../components/Button'
 import AddImageBtn from '../components/AddImageBtn'
 import Label from '../components/Label'
+import Tag from '../components/Tag'
 // import ImageUpload from '../components/ImageUpload'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
@@ -18,6 +19,11 @@ CreateEntry.propTypes = {
 export default function CreateEntry({ onSubmit }) {
   const [pictures, setPictures] = useState([])
   const [date, setDate] = useState(Date.now())
+  const [tags, setTags] = useState({
+    Gastfamilie: false,
+    Schule: false,
+    Ausflug: false
+  })
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -28,8 +34,10 @@ export default function CreateEntry({ onSubmit }) {
     data = {
       ...data,
       fullDate,
-      image: pictures
+      image: pictures,
+      tags
     }
+
     onSubmit(data)
     form.reset()
     setPictures([])
@@ -59,7 +67,6 @@ export default function CreateEntry({ onSubmit }) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
-      {/* <ImageUpload /> */}
       <>
         {pictures.map(pictureUrl => (
           <ImageStyled src={pictureUrl} alt="" />
@@ -83,6 +90,29 @@ export default function CreateEntry({ onSubmit }) {
         Datum
         <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
       </Label>
+      <div>
+        Gastfamilie
+        <CheckOptionsStyled
+          type="checkbox"
+          name="tag"
+          value="Gastfamilie"
+          onClick={event => handleCheck(event)}
+        ></CheckOptionsStyled>
+        Schule
+        <CheckOptionsStyled
+          type="checkbox"
+          name="tag"
+          value="Schule"
+          onClick={event => handleCheck(event)}
+        ></CheckOptionsStyled>
+        Ausflug
+        <CheckOptionsStyled
+          type="checkbox"
+          name="tag"
+          value="Ausflug"
+          onClick={event => handleCheck(event)}
+        ></CheckOptionsStyled>
+      </div>
       <Label>
         Eintrag
         <textarea rows="10" cols="33" name="text" />
@@ -90,8 +120,12 @@ export default function CreateEntry({ onSubmit }) {
       <Button>Eintrag erstellen</Button>
     </FormStyled>
   )
+
   function handleDateChange(value) {
     setDate(value)
+  }
+  function handleCheck(event) {
+    setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
   }
 }
 
@@ -109,4 +143,7 @@ const InputStyled = styled.input`
 `
 const ImageStyled = styled.img`
   width: 100%;
+`
+const CheckOptionsStyled = styled.input`
+  margin-right: 20px;
 `
