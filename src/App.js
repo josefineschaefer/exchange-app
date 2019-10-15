@@ -12,13 +12,13 @@ import Gallery from './pages/GalleryPage'
 
 function App() {
   const [entries, setEntries] = useState([])
+  const [selectedTag, setSelectedTag] = useState('all')
 
   useEffect(() => {
     getEntries().then(setEntries)
   }, [])
 
   function createEntry(entryData) {
-    console.log(entryData)
     postEntry(entryData).then(entry => {
       setEntries([...entries, entry])
     })
@@ -26,7 +26,6 @@ function App() {
 
   function deleteData(id) {
     deleteEntry(id).then(selectedEntry => {
-      console.log(selectedEntry)
       const index = entries.findIndex(entry => entry._id === selectedEntry._id)
       return setEntries([
         ...entries.slice(0, index),
@@ -50,6 +49,21 @@ function App() {
     })
   }
 
+  const tags = entries.map(entry => entry.tags)
+  // const newArray = arrayOfTags.filter(item => item.includes(true)).map(item=> item[0])
+ 
+  // const allTags = entries.map(entry => entry.tags)
+  // console.log("result", allTags)  
+
+  console.log("Result", tags)
+
+  const filteredEntries =
+    selectedTag === 'all'
+      ? entries
+      : entries.filter(entry => entry.tags.includes(selectedTag))
+
+
+
   return (
     <Router>
       <AppStyled>
@@ -57,7 +71,12 @@ function App() {
         <Route
           exact
           path="/"
-          render={() => <HomePage entries={entries} deleteData={deleteData} />}
+          render={() => (
+            <HomePage
+              entries={entries}
+              deleteData={deleteData}
+            />
+          )}
         />
         <Route
           path="/create"
@@ -74,7 +93,16 @@ function App() {
             )
           }}
         />
-        <Route path="/gallery" render={() => <Gallery entries={entries} />} />
+        <Route
+          path="/gallery"
+          render={() => (
+            <Gallery
+              entries={filteredEntries}
+              tags={tags}
+              onSelectTag={setSelectedTag}
+            />
+          )}
+        />
         <Navigation />
       </AppStyled>
     </Router>

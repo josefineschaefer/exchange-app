@@ -6,6 +6,7 @@ const Entry = mongoose.model('Entry', {
     type: Object, 
     default: Date.now,
   },
+  text: String,
   image: Array, 
   tags: Object,
 })

@@ -31,11 +31,8 @@ export default function Entry({
 const arrayOfTags = Object.keys(tags).map(function(key) {
   return [(key),tags[key]]
 })
-console.log(arrayOfTags)
 
 const newArray = arrayOfTags.filter(item => item.includes(true)).map(item=> item[0])
-console.log('result', newArray)
-
 
   return (
     <EntryStyled onClick={toggleText}>
