@@ -2,7 +2,6 @@ import React from 'react'
 import { configure, addDecorator } from '@storybook/react'
 import GlobalStyle from '../src/common/GlobalStyles'
 import styled from 'styled-components'
-import { withInfo } from '@storybook/addon-info';
 
 const Container = styled.div`
   margin: 20px;

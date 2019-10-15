@@ -7,9 +7,8 @@ export default {
 
 export const tag = () => {
   return (
-    <Tag
-text= "Hallo"
-    ></Tag>
+    <Tag tag="Ausflug"
+    >Ausflug</Tag>
   )
 }
 

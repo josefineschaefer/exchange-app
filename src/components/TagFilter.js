@@ -27,6 +27,7 @@ export default function TagFilter({ onClick }) {
 
 const FilterListStyled = styled.div`
   display: flex;
+  height: 48px;
 `
 
 const TagFilterStyled = styled.button`

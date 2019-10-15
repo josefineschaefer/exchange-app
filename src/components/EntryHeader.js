@@ -8,9 +8,12 @@ import EntryDate from './EntryDate'
 
 EntryHeader.propTypes = {
   title: PropTypes.string,
-  deleteData: PropTypes.func
+  deleteData: PropTypes.func, 
+  text: PropTypes.string
   // _id: PropTypes.string,
   // fullDate: PropTypes.???
+  //image: PropTypes.string?
+  //children: PropTypes.node
 }
 
 export default function EntryHeader({
