@@ -18,7 +18,6 @@ function App() {
   }, [])
 
   function createEntry(entryData) {
-    console.log(entryData)
     postEntry(entryData).then(entry => {
       setEntries([...entries, entry])
     })
@@ -26,7 +25,6 @@ function App() {
 
   function deleteData(id) {
     deleteEntry(id).then(selectedEntry => {
-      console.log(selectedEntry)
       const index = entries.findIndex(entry => entry._id === selectedEntry._id)
       return setEntries([
         ...entries.slice(0, index),
@@ -40,11 +38,7 @@ function App() {
       const index = entries.findIndex(entry => entry._id === selectedEntry._id)
       setEntries([
         ...entries.slice(0, index),
-        {
-          title: selectedEntry.title,
-          text: selectedEntry.text,
-          date: selectedEntry.date
-        },
+        selectedEntry,
         ...entries.slice(index + 1)
       ])
     })
