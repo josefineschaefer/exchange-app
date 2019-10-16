@@ -37,7 +37,6 @@ export default function CreateEntry({ onSubmit }) {
       image: pictures,
       tags
     }
-
     onSubmit(data)
     form.reset()
     setPictures([])
@@ -128,7 +127,6 @@ export default function CreateEntry({ onSubmit }) {
     setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
   }
 }
-
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
@@ -137,7 +135,6 @@ const FormStyled = styled.form`
   overflow-y: scroll;
   margin-bottom: 20px;
 `
-
 const InputStyled = styled.input`
   display: none;
 `
