@@ -27,6 +27,7 @@ export default function EditEntry({ onSubmit, editEntryData }) {
   const [title, setTitle] = useState(editEntryData.title)
   const [fullDate, setFullDate] = useState(newDate)
   const [text, setText] = useState(editEntryData.text)
+  console.log(editEntryData)
 
   return (
     <FormStyled onSubmit={handleSubmit}>

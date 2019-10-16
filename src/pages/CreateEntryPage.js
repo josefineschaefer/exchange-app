@@ -28,9 +28,11 @@ export default function CreateEntry({ onSubmit }) {
   return (
     <FormStyled onSubmit={handleSubmit}>
       <ImageUploadWrapper>
-        <DeleteBtnStyled onClick={deleteImage}/>
         {pictures.map(pictureUrl => (
-          <ImageStyled src={pictureUrl} alt="" />
+          <ImageUploadWrapper>
+            <DeleteBtnStyled onClick={() => deleteImage(pictureUrl)} />
+            <ImageStyled src={pictureUrl} alt="" />
+          </ImageUploadWrapper>
         ))}
       </ImageUploadWrapper>
       <Label>
@@ -127,9 +129,10 @@ export default function CreateEntry({ onSubmit }) {
   function handleCheck(event) {
     setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
   }
-function deleteImage(){
-  setPictures([])
-}
+  function deleteImage(pictureUrl) {
+    const newPictures = pictures.filter(picture => picture !== pictureUrl)
+    setPictures(newPictures)
+  }
 }
 
 const FormStyled = styled.form`
@@ -153,11 +156,11 @@ const CheckOptionsStyled = styled.input`
 
 const DeleteBtnStyled = styled(Delete)`
   position: absolute;
-  top: 80%;
-  left: 90%;
-  color: hotpink;
+  bottom: 10px;
+  right: 10px;
   height: 25px;
   color: white;
+  cursor: pointer;
   z-index: 4;
   :hover {
     color: #ec8647;
