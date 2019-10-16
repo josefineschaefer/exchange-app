@@ -6,6 +6,8 @@ import EntryDatePicker from '../components/EntryDatePicker'
 import Button from '../components/Button'
 import AddImageBtn from '../components/AddImageBtn'
 import Label from '../components/Label'
+import { Delete } from 'styled-icons/material/Delete'
+import ImageUploadWrapper from '../components/ImageUploadWrapper'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -25,11 +27,12 @@ export default function CreateEntry({ onSubmit }) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <>
+      <ImageUploadWrapper>
+        <DeleteBtnStyled />
         {pictures.map(pictureUrl => (
           <ImageStyled src={pictureUrl} alt="" />
         ))}
-      </>
+      </ImageUploadWrapper>
       <Label>
         Füge Bilder hinzu
         <AddImageBtn />
@@ -143,4 +146,17 @@ const ImageStyled = styled.img`
 `
 const CheckOptionsStyled = styled.input`
   margin-right: 20px;
+`
+
+const DeleteBtnStyled = styled(Delete)`
+  position: absolute;
+  top: 80%;
+  left: 90%;
+  color: hotpink;
+  height: 25px;
+  color: white;
+  z-index: 4;
+  :hover {
+    color: #ec8647;
+  }
 `

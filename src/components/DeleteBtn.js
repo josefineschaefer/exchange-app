@@ -17,7 +17,7 @@ export default function DeleteBtn({deleteData, _id}){
   }
 
   return(
-    <DeleteStyled onClick={handleClick} />
+    <DeleteStyled onClick={handleClick} ></DeleteStyled>
   )
 }
 
