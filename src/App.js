@@ -12,10 +12,58 @@ import Gallery from './pages/GalleryPage'
 
 function App() {
   const [entries, setEntries] = useState([])
+  const [selectedTag, setSelectedTag] = useState('all')
 
   useEffect(() => {
     getEntries().then(setEntries)
   }, [])
+
+  const tags = entries.map(entry => entry.tags)
+
+  return (
+    <Router>
+      <AppStyled>
+        <Header> Mein Austauschjahr</Header>
+        <Route
+          exact
+          path="/"
+          render={() => <HomePage entries={entries} deleteData={deleteData} />}
+        />
+        <Route
+          path="/create"
+          render={() => <CreateEntry onSubmit={createEntry} />}
+        />
+        <Route
+          path="/edit"
+          render={props => {
+            return (
+              <EditEntry
+                onSubmit={editEntry}
+                editEntryData={props.location.entryData}
+              />
+            )
+          }}
+        />
+        <Route
+          path="/gallery"
+          render={() => (
+            <Gallery
+              entries={getFilteredEntries()}
+              tags={tags}
+              onSelectTag={setSelectedTag}
+            />
+          )}
+        />
+        <Navigation />
+      </AppStyled>
+    </Router>
+  )
+
+  function getFilteredEntries() {
+    return selectedTag === 'all'
+      ? entries
+      : entries.filter(entry => entry.tags[selectedTag])
+  } 
 
   function createEntry(entryData) {
     postEntry(entryData).then(entry => {
@@ -43,36 +91,6 @@ function App() {
       ])
     })
   }
-
-  return (
-    <Router>
-      <AppStyled>
-        <Header> Mein Austauschjahr</Header>
-        <Route
-          exact
-          path="/"
-          render={() => <HomePage entries={entries} deleteData={deleteData} />}
-        />
-        <Route
-          path="/create"
-          render={() => <CreateEntry onSubmit={createEntry} />}
-        />
-        <Route
-          path="/edit"
-          render={props => {
-            return (
-              <EditEntry
-                onSubmit={editEntry}
-                editEntryData={props.location.entryData}
-              />
-            )
-          }}
-        />
-        <Route path="/gallery" render={() => <Gallery entries={entries} />} />
-        <Navigation />
-      </AppStyled>
-    </Router>
-  )
 }
 export default App
 

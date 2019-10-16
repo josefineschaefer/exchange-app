@@ -1,21 +1,24 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import TagFilter from '../components/TagFilter'
 
 Gallery.propTypes = {
   image: PropTypes.arrayOf(PropTypes.string)
 }
 
-export default function Gallery({ entries }) {
-  const allImages = entries.map(entry => entry.image).join(',').split(',')
+export default function Gallery({ entries, onSelectTag }) {
+  const allImages = entries
+    .map(entry => entry.image)
+    .join(',')
+    .split(',')
 
   return (
     <GalleryStyled>
-      <>
-        {allImages.map(imageUrl => (
-          <ImageStyled src={imageUrl} alt="" />
-        ))}
-      </>
+      <TagFilter tags={entries.tags} onClick={onSelectTag}></TagFilter>
+      {allImages.map(imageUrl => (
+        <ImageStyled src={imageUrl} alt="" />
+      ))}
     </GalleryStyled>
   )
 }
@@ -23,7 +26,6 @@ export default function Gallery({ entries }) {
 const GalleryStyled = styled.div`
   display: grid;
   overflow-y: auto;
-  margin-top: -4px;
 `
 
 const ImageStyled = styled.img`

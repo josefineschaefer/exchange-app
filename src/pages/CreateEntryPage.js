@@ -6,8 +6,8 @@ import EntryDatePicker from '../components/EntryDatePicker'
 import Button from '../components/Button'
 import AddImageBtn from '../components/AddImageBtn'
 import Label from '../components/Label'
-import Tag from '../components/Tag'
-// import ImageUpload from '../components/ImageUpload'
+import { Delete } from 'styled-icons/material/Delete'
+import ImageUploadWrapper from '../components/ImageUploadWrapper'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -25,52 +25,16 @@ export default function CreateEntry({ onSubmit }) {
     Ausflug: false
   })
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    const form = event.target
-    const formData = new FormData(form)
-    let fullDate = new Date(date)
-    let data = Object.fromEntries(formData)
-    data = {
-      ...data,
-      fullDate,
-      image: pictures,
-      tags
-    }
-    onSubmit(data)
-    form.reset()
-    setPictures([])
-    form.title.focus()
-  }
-
-  function upload(event) {
-    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
-    const formData = new FormData()
-    formData.append('file', event.target.files[0])
-    formData.append('upload_preset', PRESET)
-
-    axios
-      .post(url, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data'
-        }
-      })
-      .then(response => {
-        setPictures([...pictures, response.data.url])
-      })
-      .catch(err => {
-        console.log(err)
-        alert(err)
-      })
-  }
-
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <>
+      <ImageUploadWrapper>
         {pictures.map(pictureUrl => (
-          <ImageStyled src={pictureUrl} alt="" />
+          <ImageUploadWrapper>
+            <DeleteBtnStyled onClick={() => deleteImage(pictureUrl)} />
+            <ImageStyled src={pictureUrl} alt="" />
+          </ImageUploadWrapper>
         ))}
-      </>
+      </ImageUploadWrapper>
       <Label>
         Füge Bilder hinzu
         <AddImageBtn />
@@ -119,12 +83,55 @@ export default function CreateEntry({ onSubmit }) {
       <Button>Eintrag erstellen</Button>
     </FormStyled>
   )
+  function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    const formData = new FormData(form)
+    let fullDate = new Date(date)
+    let data = Object.fromEntries(formData)
+    data = {
+      ...data,
+      fullDate,
+      image: pictures,
+      tags
+    }
+
+    onSubmit(data)
+    form.reset()
+    setPictures([])
+    form.title.focus()
+  }
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
+    const formData = new FormData()
+    formData.append('file', event.target.files[0])
+    formData.append('upload_preset', PRESET)
+
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data'
+        }
+      })
+      .then(response => {
+        setPictures([...pictures, response.data.url])
+      })
+      .catch(err => {
+        console.log(err)
+        alert(err)
+      })
+  }
 
   function handleDateChange(value) {
     setDate(value)
   }
   function handleCheck(event) {
     setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
+  }
+  function deleteImage(pictureUrl) {
+    const newPictures = pictures.filter(picture => picture !== pictureUrl)
+    setPictures(newPictures)
   }
 }
 const FormStyled = styled.form`
@@ -143,4 +150,17 @@ const ImageStyled = styled.img`
 `
 const CheckOptionsStyled = styled.input`
   margin-right: 20px;
+`
+
+const DeleteBtnStyled = styled(Delete)`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 25px;
+  color: white;
+  cursor: pointer;
+  z-index: 4;
+  :hover {
+    color: #ec8647;
+  }
 `
