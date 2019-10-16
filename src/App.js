@@ -86,11 +86,7 @@ function App() {
       const index = entries.findIndex(entry => entry._id === selectedEntry._id)
       setEntries([
         ...entries.slice(0, index),
-        {
-          title: selectedEntry.title,
-          text: selectedEntry.text,
-          date: selectedEntry.date
-        },
+        selectedEntry,
         ...entries.slice(index + 1)
       ])
     })

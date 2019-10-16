@@ -134,7 +134,6 @@ export default function CreateEntry({ onSubmit }) {
     setPictures(newPictures)
   }
 }
-
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
@@ -143,7 +142,6 @@ const FormStyled = styled.form`
   overflow-y: scroll;
   margin-bottom: 20px;
 `
-
 const InputStyled = styled.input`
   display: none;
 `
