@@ -11,9 +11,11 @@ DeleteBtn.propTypes = {
 export default function DeleteBtn({deleteData, _id}){
 
   function handleClick(event) {
-    event.stopPropagation()
-    deleteData(_id)
+  event.stopPropagation()
+  if(window.confirm("Möchtest du diesen Eintrag wirklich löschen?")){
+  deleteData(_id)
   }
+}
 
   return(
     <DeleteStyled onClick={handleClick} />
