@@ -28,7 +28,7 @@ export default function CreateEntry({ onSubmit }) {
   return (
     <FormStyled onSubmit={handleSubmit}>
       <ImageUploadWrapper>
-        <DeleteBtnStyled />
+        <DeleteBtnStyled onClick={deleteImage}/>
         {pictures.map(pictureUrl => (
           <ImageStyled src={pictureUrl} alt="" />
         ))}
@@ -127,6 +127,9 @@ export default function CreateEntry({ onSubmit }) {
   function handleCheck(event) {
     setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
   }
+function deleteImage(){
+  setPictures([])
+}
 }
 
 const FormStyled = styled.form`
