@@ -4,5 +4,4 @@ import DeleteBtn from '../components/DeleteBtn'
 export default {
   title: 'DeleteBtn'
 }
-
 export const deleteBtn = () => <DeleteBtn />

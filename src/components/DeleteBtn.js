@@ -12,12 +12,11 @@ export default function DeleteBtn({deleteData, _id}){
 
   function handleClick(event) {
     event.stopPropagation()
-    alert("Willst du diesen Eintrag wirklich löschen?")
     deleteData(_id)
   }
 
   return(
-    <DeleteStyled onClick={handleClick} ></DeleteStyled>
+    <DeleteStyled onClick={handleClick} />
   )
 }
 
