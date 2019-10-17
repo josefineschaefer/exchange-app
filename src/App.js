@@ -61,7 +61,7 @@ function App() {
             <MapPage
             />
           )}
-          />
+        />
         <Navigation />
       </AppStyled>
     </Router>
