@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { HomeCircle } from 'styled-icons/boxicons-solid/HomeCircle'
 import { EditAlt } from 'styled-icons/boxicons-solid/EditAlt'
 import { PhotoAlbum } from 'styled-icons/boxicons-solid/PhotoAlbum'
+import { Map } from 'styled-icons/boxicons-solid/Map'
 
 export default function Navigation() {
   return (
@@ -17,7 +18,10 @@ export default function Navigation() {
       <LinkStyled to="/gallery">
         <GalleryStyled />
       </LinkStyled>
-    </NavigationStyled>
+    <LinkStyled to="/map">
+    <MapStyled />
+  </LinkStyled>
+  </NavigationStyled>
   )
 }
 
@@ -42,6 +46,9 @@ const CreateStyled = styled(EditAlt)`
 `
 
 const GalleryStyled = styled(PhotoAlbum)`
+  height: 30px;
+`
+const MapStyled = styled(Map)`
   height: 30px;
 `
 

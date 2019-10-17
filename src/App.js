@@ -9,6 +9,7 @@ import CreateEntry from './pages/CreateEntryPage'
 import EditEntry from './pages/EditEntryPage'
 import Navigation from './common/Navigation'
 import Gallery from './pages/GalleryPage'
+import MapPage from './pages/MapPage'
 
 function App() {
   const [entries, setEntries] = useState([])
@@ -54,6 +55,13 @@ function App() {
             />
           )}
         />
+          <Route
+          path="/map"
+          render={() => (
+            <MapPage
+            />
+          )}
+          />
         <Navigation />
       </AppStyled>
     </Router>
