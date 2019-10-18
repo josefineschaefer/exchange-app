@@ -13,3 +13,4 @@ server.use(cors())
 server.set('json spaces', 2)
 
 server.use('/entries', require('./routes/entries'))
+server.use('/markers', require('./routes/markers'))

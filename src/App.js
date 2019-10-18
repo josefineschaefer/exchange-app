@@ -11,6 +11,7 @@ import CreateEntry from './pages/CreateEntryPage'
 import EditEntry from './pages/EditEntryPage'
 import Navigation from './common/Navigation'
 import Gallery from './pages/GalleryPage'
+import MapPage from './pages/MapPage'
 
 function App() {
   const [entries, setEntries] = useState([])
@@ -70,12 +71,33 @@ function App() {
                 tags={tags}
                 onSelectTag={setSelectedTag}
               />
+            )
+          }}
+        />
+        <Route
+          path="/gallery"
+          render={() => (
+            <Gallery
+              entries={getFilteredEntries()}
+              tags={tags}
+              onSelectTag={setSelectedTag}
+            />
+          )}
+        />
+          <Route
+          path="/map"
+          render={() => (
+            <MapPage
+            />
+          )}
+        />
             )}
           />
           <Navigation />
         </AppStyled>
       </Router>
     </AlertProvider>
+
   )
 
   function getFilteredEntries() {
