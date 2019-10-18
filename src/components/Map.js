@@ -6,7 +6,7 @@ import {
   Marker,
   InfoWindow
 } from 'react-google-maps'
-import { getMarkers, postMarker, patchMarker } from '../services'
+import { getMarkers, postMarker, patchMarker, deleteMarker } from '../services'
 
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY
 
@@ -18,6 +18,10 @@ function Map() {
   useEffect(() => {
     getMarkers().then(setMarkers)
   }, [])
+
+  useEffect(() => {
+    setSelectedMarker(null)
+  }, [markers])
 
   return (
     <GoogleMap
@@ -58,7 +62,12 @@ function Map() {
               onChange={event => setMarkerText(event.target.value)}
             />
             <p>{selectedMarker.content}</p>
-            <button>x</button>
+            <button
+              type="Button"
+              onClick={() => removeMarker(selectedMarker._id)}
+            >
+              x
+            </button>
           </form>
         </InfoWindow>
       )}
@@ -90,16 +99,16 @@ function Map() {
       setMarkers([...markers, marker])
     })
   }
-// WIP
-  // function removeMarker(id) {
-  //   deleteMarker(id).then(deletedId => {
-  //     const index = markers.findIndex(marker => marker._id === deletedId)
-  //     return setMarkers([
-  //       ...markers.slice(0, index),
-  //       ...markers.slice(index + 1)
-  //     ])
-  //   })
-  // }
+
+  function removeMarker(id) {
+    deleteMarker(id).then(deletedId => {
+      const index = markers.findIndex(marker => marker._id === deletedId)
+      return setMarkers([
+        ...markers.slice(0, index),
+        ...markers.slice(index + 1)
+      ])
+    })
+  }
 }
 
 const MapWrapped = withScriptjs(withGoogleMap(Map))
