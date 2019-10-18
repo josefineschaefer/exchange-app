@@ -63,17 +63,6 @@ function App() {
               )
             }}
           />
-          <Route
-            path="/gallery"
-            render={() => (
-              <Gallery
-                entries={getFilteredEntries()}
-                tags={tags}
-                onSelectTag={setSelectedTag}
-              />
-            )
-          }}
-        />
         <Route
           path="/gallery"
           render={() => (
@@ -91,13 +80,10 @@ function App() {
             />
           )}
         />
-            )}
-          />
-          <Navigation />
-        </AppStyled>
-      </Router>
+        <Navigation />
+      </AppStyled>
+    </Router>
     </AlertProvider>
-
   )
 
   function getFilteredEntries() {
