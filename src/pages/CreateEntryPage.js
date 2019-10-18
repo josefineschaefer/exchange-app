@@ -3,11 +3,12 @@ import styled from 'styled-components/macro'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import EntryDatePicker from '../components/EntryDatePicker'
-import Button from '../components/Button'
 import AddImageBtn from '../components/AddImageBtn'
 import Label from '../components/Label'
 import { Delete } from 'styled-icons/material/Delete'
 import ImageUploadWrapper from '../components/ImageUploadWrapper'
+import EntrySubmitBtn from '../components/EntrySubmitBtn'
+import { useAlert } from 'react-alert'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -24,6 +25,8 @@ export default function CreateEntry({ onSubmit }) {
     Schule: false,
     Ausflug: false
   })
+
+  const alert = useAlert()
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -80,7 +83,7 @@ export default function CreateEntry({ onSubmit }) {
         Eintrag
         <textarea rows="10" cols="33" name="text" />
       </Label>
-      <Button>Eintrag erstellen</Button>
+      <EntrySubmitBtn />
     </FormStyled>
   )
   function handleSubmit(event) {
