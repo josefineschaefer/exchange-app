@@ -23,3 +23,32 @@ function fetchEntries({ method = 'GET', id = '', data } = {}) {
     },
   }).then(res => res.json())
 }
+
+// Services for markers
+
+export function getMarkers() {
+  return fetchMarkers()
+}
+
+export function postMarker(data) {
+  return fetchMarkers({ method: 'POST', data })
+}
+
+// export function patchMarker(id, data) {
+//   return fetchMarkers({ method: 'PATCH', id, data })
+// }
+
+// export function deleteMarker(id){
+//   return fetchMarkers({method: 'DELETE', id})
+// }
+
+function fetchMarkers({ method = 'GET', id = '', data } = {}) {
+  return fetch('/markers/' + id, {
+    method,
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then(res => res.json())
+}
+
