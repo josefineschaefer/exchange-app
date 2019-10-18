@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
 const Marker = mongoose.model('Marker', {
-  latLng: Object
+  title: String,
+  content: String,
+  latLng: Object, 
+
 })
 
 module.exports = Marker

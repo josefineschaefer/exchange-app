@@ -34,13 +34,13 @@ export function postMarker(data) {
   return fetchMarkers({ method: 'POST', data })
 }
 
-// export function patchMarker(id, data) {
-//   return fetchMarkers({ method: 'PATCH', id, data })
-// }
+export function patchMarker(id, data) {
+  return fetchMarkers({ method: 'PATCH', id, data })
+}
 
-// export function deleteMarker(id){
-//   return fetchMarkers({method: 'DELETE', id})
-// }
+export function deleteMarker(id){
+  return fetchMarkers({method: 'DELETE', id})
+}
 
 function fetchMarkers({ method = 'GET', id = '', data } = {}) {
   return fetch('/markers/' + id, {
