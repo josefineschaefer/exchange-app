@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 
 import Header from './common/Header'
 import HomePage from './pages/HomePage'
@@ -21,26 +23,53 @@ function App() {
 
   const tags = entries.map(entry => entry.tags)
 
+  const AlertTemplate = ({ style, message}) => (
+    <AlertStyled style={style}>
+      {message}
+    </AlertStyled>
+  )
+
+  const options = {
+    position: positions.MIDDLE,
+    timeout: 2000,
+    offset: '30px',
+    transition: transitions.SCALE
+  }
+
   return (
-    <Router>
-      <AppStyled>
-        <Header> Mein Austauschjahr</Header>
-        <Route
-          exact
-          path="/"
-          render={() => <HomePage entries={entries} deleteData={deleteData} />}
-        />
-        <Route
-          path="/create"
-          render={() => <CreateEntry onSubmit={createEntry} />}
-        />
-        <Route
-          path="/edit"
-          render={props => {
-            return (
-              <EditEntry
-                onSubmit={editEntry}
-                editEntryData={props.location.entryData}
+    <AlertProvider template={AlertTemplate} message {...options}>
+      <Router>
+        <AppStyled>
+          <Header> Mein Austauschjahr</Header>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <HomePage entries={entries} deleteData={deleteData} />
+            )}
+          />
+          <Route
+            path="/create"
+            render={() => <CreateEntry onSubmit={createEntry} />}
+          />
+          <Route
+            path="/edit"
+            render={props => {
+              return (
+                <EditEntry
+                  onSubmit={editEntry}
+                  editEntryData={props.location.entryData}
+                />
+              )
+            }}
+          />
+          <Route
+            path="/gallery"
+            render={() => (
+              <Gallery
+                entries={getFilteredEntries()}
+                tags={tags}
+                onSelectTag={setSelectedTag}
               />
             )
           }}
@@ -62,16 +91,20 @@ function App() {
             />
           )}
         />
-        <Navigation />
-      </AppStyled>
-    </Router>
+            )}
+          />
+          <Navigation />
+        </AppStyled>
+      </Router>
+    </AlertProvider>
+
   )
 
   function getFilteredEntries() {
     return selectedTag === 'all'
       ? entries
       : entries.filter(entry => entry.tags[selectedTag])
-  } 
+  }
 
   function createEntry(entryData) {
     postEntry(entryData).then(entry => {
@@ -111,4 +144,12 @@ const AppStyled = styled.div`
   top: 0;
   bottom: 0;
   height: 100%;
+`
+
+const AlertStyled = styled.div`
+  border: none;
+  padding: 20px;
+  background: #ec8647;
+  font-weight: bold;
+  border-radius: 5px;
 `

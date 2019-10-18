@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 
 export default function Button({children}){
   return (
-<ButtonStyled>{children}</ButtonStyled>
+<ButtonStyled></ButtonStyled>
   )
 }
 
