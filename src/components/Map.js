@@ -7,6 +7,7 @@ import {
   InfoWindow
 } from 'react-google-maps'
 import { getMarkers, postMarker, patchMarker, deleteMarker } from '../services'
+import styled from 'styled-components'
 
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY
 
@@ -26,7 +27,7 @@ function Map() {
   return (
     <GoogleMap
       defaultZoom={8}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      defaultCenter={{ lat: 35.689487, lng: 139.691711 }}
       onClick={createMarker}
     >
       {markers.map(marker => (
@@ -51,7 +52,7 @@ function Map() {
             lng: selectedMarker.latLng.lng
           }}
         >
-          <form
+          <FormStyled
             onSubmit={event => handleSubmit(event, selectedMarker, markerText)}
           >
             <input
@@ -66,9 +67,9 @@ function Map() {
               type="Button"
               onClick={() => removeMarker(selectedMarker._id)}
             >
-              x
+              Pin löschen
             </button>
-          </form>
+          </FormStyled>
         </InfoWindow>
       )}
     </GoogleMap>
@@ -125,3 +126,7 @@ export default function MapContainer() {
     </div>
   )
 }
+
+const FormStyled = styled.form`
+  padding: 5px;
+`
