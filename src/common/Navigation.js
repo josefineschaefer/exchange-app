@@ -18,10 +18,10 @@ export default function Navigation() {
       <LinkStyled to="/gallery">
         <GalleryStyled />
       </LinkStyled>
-    <LinkStyled to="/map">
-    <MapStyled />
-  </LinkStyled>
-  </NavigationStyled>
+      <LinkStyled to="/map">
+        <MapStyled />
+      </LinkStyled>
+    </NavigationStyled>
   )
 }
 
@@ -32,24 +32,34 @@ const LinkStyled = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f4c3a4;
-  &.active {
-    background: #ec8647;
-  }
+  background: #5ed2a7;
 `
 
 const HomeStyled = styled(HomeCircle)`
   height: 30px;
+  color: black;
+  ${LinkStyled}.active & {
+    color: white;
+  }
 `
 const CreateStyled = styled(EditAlt)`
   height: 30px;
+  ${LinkStyled}.active & {
+    color: white;
+  }
 `
 
 const GalleryStyled = styled(PhotoAlbum)`
   height: 30px;
+  ${LinkStyled}.active & {
+    color: white;
+  }
 `
 const MapStyled = styled(Map)`
   height: 30px;
+  ${LinkStyled}.active & {
+    color: white;
+  }
 `
 
 const NavigationStyled = styled.nav`

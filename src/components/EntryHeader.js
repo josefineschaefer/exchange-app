@@ -8,7 +8,7 @@ import EntryDate from './EntryDate'
 
 EntryHeader.propTypes = {
   title: PropTypes.string,
-  deleteData: PropTypes.func, 
+  deleteData: PropTypes.func,
   text: PropTypes.string
   // _id: PropTypes.string,
   // fullDate: PropTypes.???
@@ -54,12 +54,10 @@ export default function EntryHeader({
 }
 
 const HeaderStyled = styled.div`
-  background-color: #ec8647;
+  background-color: white;
   padding: 20px;
   border-radius: 5px 5px 5px 5px;
-  
 `
-
 const TitleStyled = styled.div`
   font-size: 1.5em;
   text-align: left;

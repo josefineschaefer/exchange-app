@@ -12,6 +12,6 @@ const ImageUploadStyled = styled(ImageAdd)`
   height: 30px;
   color: black;
   :hover {
-    color: #ec8647;
+    color: #3eb4be;
   }
 `

@@ -110,7 +110,7 @@ const GridVerticalStyled = styled(GridVertical)`
   padding: 5px;
   color: white;
   :hover {
-    color: #ec8647;
+    color: #5ed2a7;
   }
 `
 const ImageIconStyled = styled(Image)`
@@ -118,6 +118,6 @@ const ImageIconStyled = styled(Image)`
   padding: 5px;
   color: white;
   :hover {
-    color: #ec8647;
+    color: #5ed2a7;
   }
 `

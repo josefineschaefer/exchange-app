@@ -11,6 +11,6 @@ const EditIconStyled = styled(Create)`
   margin: 0 5px;
   color: black;
   :hover {
-    color: white;
+    color: #3eb4be;
   }
 `

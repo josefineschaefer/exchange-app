@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 import EditBtn from './EditBtn'
 import DeleteBtn from './DeleteBtn'
 import EntryDate from './EntryDate'
+import { KeyboardArrowDown } from 'styled-icons/material/KeyboardArrowDown'
 
 Entry.propTypes = {
   title: PropTypes.string,
@@ -31,15 +32,14 @@ export default function Entry({
     setIsTextVisible(!isTextVisible)
   }
 
-  const arrayOfTags = Object.keys(tags)
-  .map(function(key) {
-  return [key, tags[key]]
+  const arrayOfTags = Object.keys(tags).map(function(key) {
+    return [key, tags[key]]
   })
 
   const newArray = arrayOfTags
-  .filter(item => item.includes(true))
-  .map(item => item[0])
- 
+    .filter(item => item.includes(true))
+    .map(item => item[0])
+
   return (
     <EntryStyled onClick={toggleText}>
       <HeaderStyled>
@@ -67,29 +67,41 @@ export default function Entry({
         <EntryDate fullDate={fullDate}></EntryDate>
         {children}
         <div>{newArray && newArray.map(tag => <Tag tag={tag} />)}</div>
+        <ExpandIconStyled />
       </HeaderStyled>
-      {isTextVisible && <EntryBodyStyled>
-      {image.map(picture => {
-        return <EntryImageStyled src={picture} />
-      })}
-      {text}
-    </EntryBodyStyled>}
+      {isTextVisible && (
+        <EntryBodyStyled>
+          {image.map(picture => {
+            return <EntryImageStyled src={picture} />
+          })}
+          {text}
+        </EntryBodyStyled>
+      )}
     </EntryStyled>
   )
 }
 
 const EntryStyled = styled.div`
   border-radius: 5px;
-  box-shadow: 0 10px 10px #0002;
+  border-bottom: 1px solid #808782;
   margin: 5px;
   display: flex;
   flex-direction: column;
+
 `
 const HeaderStyled = styled.div`
-  background-color: #ec8647;
-  padding: 20px;
-  border-radius: 5px 5px 5px 5px;
+  background-color: white;
+  padding: 30px;
+  border-bottom: 1px solid #808782;
+  position: relative;
 `
+const ExpandIconStyled = styled(KeyboardArrowDown)`
+  position: absolute;
+  height: 30px;
+  z-index: 5;
+  right: 45%;
+`
+
 const TitleStyled = styled.div`
   font-size: 1.5em;
   text-align: left;

@@ -16,17 +16,17 @@ export default function Homepage({ entries, deleteData, editData }) {
       <StyledHeaderImage src={worldmap} />
       <Scroller>
         {entries
-        .slice()
-        .sort((a,b)=> new Date(a.fullDate) - new Date(b.fullDate))
-        .map(entry => (
-        <Entry
-          {...entry}
-          key={entry._id}
-          deleteData={deleteData}
-          editData={editData}
-          tag={entry.tag}
-        />
-        ))}
+          .slice()
+          .sort((a, b) => new Date(a.fullDate) - new Date(b.fullDate))
+          .map(entry => (
+            <Entry
+              {...entry}
+              key={entry._id}
+              deleteData={deleteData}
+              editData={editData}
+              tag={entry.tag}
+            />
+          ))}
       </Scroller>
     </StyledHomePage>
   )
@@ -45,4 +45,6 @@ const StyledHeaderImage = styled.img`
 const Scroller = styled.div`
   overflow-y: auto;
   scroll-behavior: smooth;
+  display: grid;
+  grid-gap: 10px;
 `
