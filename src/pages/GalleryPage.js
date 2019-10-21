@@ -76,12 +76,10 @@ const ColumnWrapperStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 `
-
 const FilterWrapperStyled = styled.div`
   position: sticky;
   top: 0;
 `
-
 const GalleryStyled = styled.div`
   display: grid;
   overflow-y: auto;
@@ -94,23 +92,19 @@ const ColumnStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
 `
-
 const TagFilterStyled = styled(TagFilter)`
   position: fixed;
 `
-
 const ImageStyled = styled.img`
   width: 100%;
   padding: 2.5px 5px;
 `
-
 const IconsStyled = styled.div`
   position: absolute;
   display: flex;
   align-self: flex-end;
   justify-content: flex-end;
 `
-
 const GridVerticalStyled = styled(GridVertical)`
   height: 48px;
   padding: 5px;
