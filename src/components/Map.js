@@ -7,7 +7,7 @@ import {
   InfoWindow
 } from 'react-google-maps'
 import { getMarkers, postMarker, patchMarker, deleteMarker } from '../services'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY
 
