@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { getEntries, patchEntry, postEntry, deleteEntry } from './services'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
 
 import Header from './common/Header'
 import HomePage from './pages/HomePage'
