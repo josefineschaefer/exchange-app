@@ -19,7 +19,7 @@ export default function Header({ children }) {
 }
 
 const HeaderStyled = styled.div`
-  background-color: #ec8647;
+  background-image: linear-gradient(to left, #5ed2a7, #3eb4be);
   display: flex;
   justify-content: space-around;
   align-items: center;

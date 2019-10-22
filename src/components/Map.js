@@ -8,6 +8,7 @@ import {
 } from 'react-google-maps'
 import { getMarkers, postMarker, patchMarker, deleteMarker } from '../services'
 import styled from 'styled-components/macro'
+import mapStyles from './mapStyles'
 
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY
 
@@ -29,6 +30,7 @@ function Map() {
       defaultZoom={8}
       defaultCenter={{ lat: 35.689487, lng: 139.691711 }}
       onClick={createMarker}
+      defaultOptions={{styles: mapStyles}}
     >
       {markers.map(marker => (
         <Marker

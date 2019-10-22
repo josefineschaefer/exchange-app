@@ -22,10 +22,8 @@ function App() {
 
   const tags = entries.map(entry => entry.tags)
 
-  const AlertTemplate = ({ style, message}) => (
-    <AlertStyled style={style}>
-      {message}
-    </AlertStyled>
+  const AlertTemplate = ({ style, message }) => (
+    <AlertStyled style={style}>{message}</AlertStyled>
   )
 
   const options = {
@@ -62,26 +60,20 @@ function App() {
               )
             }}
           />
-        <Route
-          path="/gallery"
-          render={() => (
-            <Gallery
-              entries={getFilteredEntries()}
-              tags={tags}
-              onSelectTag={setSelectedTag}
-            />
-          )}
-        />
           <Route
-          path="/map"
-          render={() => (
-            <MapPage
-            />
-          )}
-        />
-        <Navigation />
-      </AppStyled>
-    </Router>
+            path="/gallery"
+            render={() => (
+              <Gallery
+                entries={getFilteredEntries()}
+                tags={tags}
+                onSelectTag={setSelectedTag}
+              />
+            )}
+          />
+          <Route path="/map" render={() => <MapPage />} />
+          <Navigation />
+        </AppStyled>
+      </Router>
     </AlertProvider>
   )
 
@@ -122,13 +114,14 @@ export default App
 
 const AppStyled = styled.div`
   display: grid;
-  grid-template-rows: 48px auto 48px;
+  grid-template-rows: 60px auto 60px;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   height: 100%;
+  background-color: #white;
 `
 
 const AlertStyled = styled.div`

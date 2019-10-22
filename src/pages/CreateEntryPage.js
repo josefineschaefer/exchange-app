@@ -50,7 +50,7 @@ export default function CreateEntry({ onSubmit }) {
       </Label>
       <Label>
         Titel
-        <input name="title" />
+        <TitleInputStyled name="title" />
       </Label>
       <Label>
         Datum
@@ -81,7 +81,7 @@ export default function CreateEntry({ onSubmit }) {
       </div>
       <Label>
         Eintrag
-        <textarea rows="10" cols="33" name="text" />
+        <EntryInputStyled rows="10" cols="33" name="text" />
       </Label>
       <EntrySubmitBtn />
     </FormStyled>
@@ -145,6 +145,15 @@ const FormStyled = styled.form`
   overflow-y: scroll;
   margin-bottom: 20px;
 `
+const EntryInputStyled = styled.textarea`
+  padding: 5px;
+`
+
+const TitleInputStyled = styled.input`
+  padding: 5px;
+  font-size: 16px;
+`
+
 const InputStyled = styled.input`
   display: none;
 `

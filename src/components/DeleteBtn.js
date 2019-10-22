@@ -26,6 +26,6 @@ const DeleteStyled = styled(Delete)`
   height: 20px;
   color: black;
   :hover {
-    color: white;
+    color: #3eb4be;
   }
 `
