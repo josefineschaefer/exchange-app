@@ -173,6 +173,6 @@ const DeleteBtnStyled = styled(Delete)`
   cursor: pointer;
   z-index: 4;
   :hover {
-    color: #ec8647;
+    color: #3eb4be;
   }
 `
