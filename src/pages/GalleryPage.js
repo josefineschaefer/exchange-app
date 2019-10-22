@@ -43,13 +43,13 @@ export default function Gallery({ entries, onSelectTag }) {
 
   function renderGalleryView() {
     if (gridView) {
-      const imagesEvent = allImages.filter((images, index) => index % 2 === 0)
+      const imagesEven = allImages.filter((images, index) => index % 2 === 0)
       const imagesOdd = allImages.filter((images, index) => index % 2 !== 0)
 
       return (
         <ColumnWrapperStyled>
           <ColumnStyled>
-            {imagesEvent.map(imageUrl => (
+            {imagesEven.map(imageUrl => (
               <ImageStyled src={imageUrl} alt="" />
             ))}
           </ColumnStyled>
@@ -102,8 +102,8 @@ const ImageStyled = styled.img`
 const IconsStyled = styled.div`
   position: absolute;
   display: flex;
-  align-self: flex-end;
-  justify-content: flex-end;
+  left: 10px;
+  bottom: 70px;
 `
 const GridVerticalStyled = styled(GridVertical)`
   height: 48px;
