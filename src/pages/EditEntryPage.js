@@ -26,7 +26,8 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       tags,
       title,
       fullDate,
-      text
+      text, 
+      image: pictures
     }
     onSubmit(editEntryData.id, newEditEntryData)
   }
@@ -38,22 +39,20 @@ export default function EditEntry({ onSubmit, editEntryData }) {
   const [tags, setTags] = useState(editEntryData.tags)
   const [pictures, setPictures] = useState(editEntryData.image)
 
-  console.log(editEntryData)
-
   return (
     <FormStyled onSubmit={handleSubmit}>
       <ImageUploadWrapper>
         {pictures.map(pictureUrl => (
-          <ImageUploadWrapper>
+          <>
             <DeleteBtnStyled onClick={() => deleteImage(pictureUrl)} />
             <ImageStyled src={pictureUrl} alt="" />
-          </ImageUploadWrapper>
+          </>
         ))}
       </ImageUploadWrapper>
       <Label>
         Füge Bilder hinzu
         <AddImageBtn />
-        <InputStyled
+        <HiddenImageUploadStyled
           name="image"
           id="imageUpload"
           type="file"
@@ -62,7 +61,7 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       </Label>
       <Label>
         Titel
-        <input
+        <TitleInputStyled
           name="title"
           value={title}
           onChange={event => setTitle(event.target.value)}
@@ -83,7 +82,7 @@ export default function EditEntry({ onSubmit, editEntryData }) {
           type="checkbox"
           name="tag"
           value="Gastfamilie"
-          checked={editEntryData.tags['Gastfamilie']}
+          checked={tags['Gastfamilie']}
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
         Schule
@@ -91,7 +90,7 @@ export default function EditEntry({ onSubmit, editEntryData }) {
           type="checkbox"
           name="tag"
           value="Schule"
-          checked={editEntryData.tags['Schule']}
+          checked={tags['Schule']}
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
         Ausflug
@@ -99,13 +98,13 @@ export default function EditEntry({ onSubmit, editEntryData }) {
           type="checkbox"
           name="tag"
           value="Ausflug"
-          checked={editEntryData.tags['Ausflug']}
+          checked={tags['Ausflug']}
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
       <Label>
         Eintrag
-        <textarea
+        <EntryInputStyled
           rows="10"
           cols="33"
           name="text"
@@ -117,8 +116,11 @@ export default function EditEntry({ onSubmit, editEntryData }) {
     </FormStyled>
   )
   function handleCheck(event) {
-    setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
+    console.log(event.target.value, !tags[event.target.value])
+    const newTags = { ...tags, [event.target.value]: !tags[event.target.value] }
+    setTags(newTags)
   }
+
   function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
     const formData = new FormData()
@@ -140,8 +142,10 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       })
   }
   function deleteImage(pictureUrl) {
-    const newPictures = pictures.filter(picture => picture !== pictureUrl)
-    setPictures(newPictures)
+    const filteredPictureList = pictures.filter(
+      picture => picture !== pictureUrl
+    )
+    setPictures(filteredPictureList)
   }
 }
 
@@ -168,9 +172,16 @@ const DeleteBtnStyled = styled(Delete)`
     color: #3eb4be;
   }
 `
-const InputStyled = styled.input`
+const HiddenImageUploadStyled = styled.input`
   display: none;
 `
 const ImageStyled = styled.img`
   width: 100%;
+`
+const TitleInputStyled = styled.input`
+  padding: 5px;
+  font-size: 16px;
+`
+const EntryInputStyled = styled.textarea`
+  padding: 5px;
 `
