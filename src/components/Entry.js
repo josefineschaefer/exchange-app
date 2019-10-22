@@ -87,19 +87,22 @@ const EntryStyled = styled.div`
   margin: 5px;
   display: flex;
   flex-direction: column;
-
 `
 const HeaderStyled = styled.div`
   background-color: white;
   padding: 30px;
-  border-bottom: 1px solid #808782;
   position: relative;
+  box-shadow: 5px 5px 10px 1px rgb(247, 247, 252);
 `
 const ExpandIconStyled = styled(KeyboardArrowDown)`
   position: absolute;
   height: 30px;
   z-index: 5;
   right: 45%;
+  color: black;
+  :hover {
+    color: #3eb4be;
+  }
 `
 
 const TitleStyled = styled.div`
