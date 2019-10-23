@@ -9,6 +9,7 @@ import { Delete } from 'styled-icons/material/Delete'
 import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import EntrySubmitBtn from '../components/EntrySubmitBtn'
 import { useAlert } from 'react-alert'
+import InputEditor from '../components/InputEditor'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -79,10 +80,11 @@ export default function CreateEntry({ onSubmit }) {
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      <Label>
+      <InputEditor/>
+      {/* <Label>
         Eintrag
         <EntryInputStyled rows="10" cols="33" name="text" />
-      </Label>
+      </Label> */}
       <EntrySubmitBtn />
     </FormStyled>
   )
