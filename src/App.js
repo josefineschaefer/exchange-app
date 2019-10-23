@@ -84,7 +84,9 @@ function App() {
   }
 
   function createEntry(entryData) {
+    console.log('entryData', entryData)
     postEntry(entryData).then(entry => {
+      console.log('entry', entry)
       setEntries([...entries, entry])
     })
   }

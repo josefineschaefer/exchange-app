@@ -10,7 +10,7 @@ Homepage.propTypes = {
   editData: PropTypes.func
 }
 
-export default function Homepage({ entries, deleteData, editData, editorContent }) {
+export default function Homepage({ entries, deleteData, editData }) {
   return (
     <StyledHomePage>
       <StyledHeaderImage src={worldmap} />
@@ -24,8 +24,8 @@ export default function Homepage({ entries, deleteData, editData, editorContent 
               key={entry._id}
               deleteData={deleteData}
               editData={editData}
-              tag={entry.tag} 
-              editorContent={editorContent}
+              tags={entry.tags} 
+              editorContent={entry.editorContent}
             />
           ))}
       </Scroller>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Tag from './Tag'
@@ -7,6 +7,8 @@ import EditBtn from './EditBtn'
 import DeleteBtn from './DeleteBtn'
 import EntryDate from './EntryDate'
 import { KeyboardArrowDown } from 'styled-icons/material/KeyboardArrowDown'
+import {stateToHTML} from 'draft-js-export-html';
+import { convertFromRaw } from 'draft-js'
 
 Entry.propTypes = {
   title: PropTypes.string,
@@ -25,12 +27,30 @@ export default function Entry({
   deleteData,
   image,
   tags,
-  children
+  children,
+  editorContent
 }) {
-  console.log("entry", tags)
- console.log("test", fullDate)
-
   const [isTextVisible, setIsTextVisible] = useState(false)
+  const sectionElement = useCallback(el => {
+    if (el && editorContent) {
+      console.log(editorContent)
+      const noteContent = JSON.parse(editorContent)
+      const contentState = convertFromRaw(noteContent)
+      const textOutput = stateToHTML(contentState)
+      console.log(textOutput)
+      console.log(el)
+      el.innerHTML = textOutput
+    }
+  }, [editorContent])
+
+  useEffect(()=>{
+    // else if (text) {
+    //   sectionElement.textContent = text
+    // }
+  }, [editorContent])
+
+
+
   function toggleText() {
     setIsTextVisible(!isTextVisible)
   }
@@ -38,8 +58,6 @@ export default function Entry({
   const arrayOfTags = Object.keys(tags).map(function(key) {
     return [key, tags[key]]
   })
-
- // console.log('arrayOfTags', arrayOfTags)
 
   const newArray = arrayOfTags
     .filter(item => item.includes(true)).map(item => item[0])
@@ -80,7 +98,8 @@ export default function Entry({
           {image.map(picture => {
             return <EntryImageStyled src={picture} />
           })}
-          {text}
+          {/* {text} */}
+          <section ref={sectionElement}></section>
         </EntryBodyStyled>
       )}
     </EntryStyled>

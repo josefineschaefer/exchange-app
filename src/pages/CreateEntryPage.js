@@ -81,11 +81,11 @@ export default function CreateEntry({ onSubmit }) {
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      {/* <InputEditor editorContentState={[editorContent, setEditorContent]} onSubmit={convertEditorInput}/> */}
-      <Label>
+      <InputEditor editorContentState={[editorContent, setEditorContent]}/>
+      {/* <Label>
         Eintrag
         <EntryInputStyled rows="10" cols="33" name="text" />
-      </Label>
+      </Label> */}
       <EntrySubmitBtn />
     </FormStyled>
   )
@@ -93,9 +93,7 @@ export default function CreateEntry({ onSubmit }) {
   function convertEditorInput(){
     const contentState = editorContent.getCurrentContent()
     const noteContent = convertToRaw(contentState)
-    const editorContentString = JSON.stringify(noteContent)
-    console.log('editorContentString', editorContentString)
-    console.log('contentState', contentState)
+    return JSON.stringify(noteContent)
   }
 
 
@@ -110,9 +108,8 @@ export default function CreateEntry({ onSubmit }) {
       fullDate,
       image: pictures,
       tags,
-      editorContent
+      editorContent: convertEditorInput(),
     }
-    console.log('data on create page', data)
 
     onSubmit(data)
     form.reset()
