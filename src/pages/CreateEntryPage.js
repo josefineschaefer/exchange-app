@@ -142,7 +142,7 @@ export default function CreateEntry({ onSubmit }) {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   overflow-y: scroll;
   margin-bottom: 20px;

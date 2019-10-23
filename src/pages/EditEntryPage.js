@@ -26,7 +26,7 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       tags,
       title,
       fullDate,
-      text, 
+      text,
       image: pictures
     }
     onSubmit(editEntryData.id, newEditEntryData)
@@ -155,7 +155,7 @@ const CheckOptionsStyled = styled.input`
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   overflow-y: scroll;
 `

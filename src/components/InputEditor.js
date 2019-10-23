@@ -39,6 +39,7 @@ export default function InputEditor() {
           onChange={onChange}
           handleKeyCommand={handleKeyCommand}
           customStyleMap={styleMap}
+          placeholder="Hier kannst du deinen Eintrag erstellen..."
         />
       </EntryEditorContent>
     </>
@@ -81,26 +82,47 @@ export default function InputEditor() {
 const EntryEditorContent = styled.section`
   padding: 5px;
   line-height: 1.5;
+  border: 1px solid lightgray;
+  color: #c0c0c0;
 `
 const BoldBtn = styled(Bold)`
-  height: 24px;
-  color: hotpink;
+  color: black;
+  height: 32px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #5ed2a7;
+  border-radius: 5px;
+  background-color: #5ed2a7;
 `
 const ItalicBtn = styled(Italic)`
-  height: 24px;
-  color: hotpink;
+  color: black;
+  height: 32px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #5ed2a7;
+  border-radius: 5px;
+  background-color: #5ed2a7;
 `
 const UnderlineBtn = styled(Underline)`
-  height: 24px;
-  color: hotpink;
+  color: black;
+  height: 32px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #5ed2a7;
+  border-radius: 5px;
+  background-color: #5ed2a7;
 `
 const HighlightBtn = styled(Highlighter)`
-  height: 24px;
-  color: hotpink;
+  color: black;
+  height: 32px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #5ed2a7;
+  border-radius: 5px;
+  background-color: #5ed2a7;
 `
 const EntryEditorButtons = styled.section`
   width: 70vw;
   display: flex;
-  justify-content: space-between;
   z-index: 1000;
 `
