@@ -20,10 +20,11 @@ function App() {
     getEntries().then(setEntries)
   }, [])
 
-  const tags = entries.map(entry => entry.tags)
+  // const tags = entries.map(entry => entry.tags)
+  // console.log('tags', tags)
 
   const AlertTemplate = ({ style, message }) => (
-    <AlertStyled style={style}>{message}</AlertStyled>
+    <AlertStyled style={style} >{message}</AlertStyled>
   )
 
   const options = {
@@ -34,7 +35,7 @@ function App() {
   }
 
   return (
-    <AlertProvider template={AlertTemplate} message {...options}>
+    <AlertProvider template={AlertTemplate} message="true" {...options}>
       <Router>
         <AppStyled>
           <Header> Mein Austauschjahr</Header>
@@ -65,7 +66,6 @@ function App() {
             render={() => (
               <Gallery
                 entries={getFilteredEntries()}
-                tags={tags}
                 onSelectTag={setSelectedTag}
               />
             )}
@@ -127,7 +127,7 @@ const AppStyled = styled.div`
 const AlertStyled = styled.div`
   border: none;
   padding: 20px;
-  background: #ec8647;
+  background-color: #c3efdf;
   font-weight: bold;
   border-radius: 5px;
 `

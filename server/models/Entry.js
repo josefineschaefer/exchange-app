@@ -9,6 +9,7 @@ const Entry = mongoose.model('Entry', {
   text: String,
   image: Array, 
   tags: Object,
+  editorContent: String
 })
 
 module.exports = Entry

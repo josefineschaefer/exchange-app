@@ -29,6 +29,7 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       text,
       image: pictures
     }
+    console.log('editConcertData', editEntryData)
     onSubmit(editEntryData.id, newEditEntryData)
   }
 
@@ -116,7 +117,6 @@ export default function EditEntry({ onSubmit, editEntryData }) {
     </FormStyled>
   )
   function handleCheck(event) {
-    console.log(event.target.value, !tags[event.target.value])
     const newTags = { ...tags, [event.target.value]: !tags[event.target.value] }
     setTags(newTags)
   }

@@ -9,4 +9,8 @@ export default createGlobalStyle`
   body{
     overflow-y: scroll;
   }
+
+  .public-DraftEditorPlaceholder-inner {
+    color: #AEAEAE;
+  }
 `

@@ -10,6 +10,7 @@ import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import EntrySubmitBtn from '../components/EntrySubmitBtn'
 import { useAlert } from 'react-alert'
 import InputEditor from '../components/InputEditor'
+import { EditorState, convertToRaw } from 'draft-js'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -19,6 +20,7 @@ CreateEntry.propTypes = {
 }
 
 export default function CreateEntry({ onSubmit }) {
+  const [editorContent, setEditorContent] = useState(EditorState.createEmpty())
   const [pictures, setPictures] = useState([])
   const [date, setDate] = useState(Date.now())
   const [tags, setTags] = useState({
@@ -26,7 +28,6 @@ export default function CreateEntry({ onSubmit }) {
     Schule: false,
     Ausflug: false
   })
-
   const alert = useAlert()
 
   return (
@@ -80,14 +81,24 @@ export default function CreateEntry({ onSubmit }) {
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      <InputEditor/>
-      {/* <Label>
+      {/* <InputEditor editorContentState={[editorContent, setEditorContent]} onSubmit={convertEditorInput}/> */}
+      <Label>
         Eintrag
         <EntryInputStyled rows="10" cols="33" name="text" />
-      </Label> */}
+      </Label>
       <EntrySubmitBtn />
     </FormStyled>
   )
+
+  function convertEditorInput(){
+    const contentState = editorContent.getCurrentContent()
+    const noteContent = convertToRaw(contentState)
+    const editorContentString = JSON.stringify(noteContent)
+    console.log('editorContentString', editorContentString)
+    console.log('contentState', contentState)
+  }
+
+
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
@@ -98,8 +109,10 @@ export default function CreateEntry({ onSubmit }) {
       ...data,
       fullDate,
       image: pictures,
-      tags
+      tags,
+      editorContent
     }
+    console.log('data on create page', data)
 
     onSubmit(data)
     form.reset()
@@ -147,9 +160,9 @@ const FormStyled = styled.form`
   overflow-y: scroll;
   margin-bottom: 20px;
 `
-const EntryInputStyled = styled.textarea`
-  padding: 5px;
-`
+   const EntryInputStyled = styled.textarea`
+   padding: 5px;
+ `
 
 const TitleInputStyled = styled.input`
   padding: 5px;

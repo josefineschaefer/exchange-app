@@ -27,6 +27,9 @@ export default function Entry({
   tags,
   children
 }) {
+  console.log("entry", tags)
+ console.log("test", fullDate)
+
   const [isTextVisible, setIsTextVisible] = useState(false)
   function toggleText() {
     setIsTextVisible(!isTextVisible)
@@ -36,9 +39,12 @@ export default function Entry({
     return [key, tags[key]]
   })
 
+ // console.log('arrayOfTags', arrayOfTags)
+
   const newArray = arrayOfTags
-    .filter(item => item.includes(true))
-    .map(item => item[0])
+    .filter(item => item.includes(true)).map(item => item[0])
+
+//console.log('newArray', newArray)
 
   return (
     <EntryStyled onClick={toggleText}>

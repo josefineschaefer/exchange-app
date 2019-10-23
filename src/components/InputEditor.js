@@ -1,25 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { Editor, RichUtils, EditorState } from 'draft-js'
+import { Editor, RichUtils } from 'draft-js'
 import { Bold } from 'styled-icons/fa-solid/Bold'
 import { Italic } from 'styled-icons/fa-solid/Italic'
 import { Underline } from 'styled-icons/fa-solid/Underline'
 import { Highlighter } from 'styled-icons/fa-solid/Highlighter'
 
-export default function InputEditor() {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty())
+export default function InputEditor({ editorContentState }) {
+  const [editorContent, setEditorContent] = editorContentState
 
   const styleMap = {
     HIGHLIGHT: {
-      backgroundColor: '#FFF4AA'
+      backgroundColor: '#c3efdf'
     }
   }
 
   return (
     <>
       <EntryEditorButtons>
-        {/* <Link to="/"><img alt='Go back' src={chevronLeft} /></Link> */}
         <Link to="/editor" onClick={onBoldClick}>
           <BoldBtn alt="Bold" />
         </Link>
@@ -35,7 +34,7 @@ export default function InputEditor() {
       </EntryEditorButtons>
       <EntryEditorContent>
         <Editor
-          editorState={editorState}
+          editorState={editorContent}
           onChange={onChange}
           handleKeyCommand={handleKeyCommand}
           customStyleMap={styleMap}
@@ -46,11 +45,11 @@ export default function InputEditor() {
   )
 
   function onChange(editorState) {
-    setEditorState(editorState)
+    setEditorContent(editorState)
   }
 
   function handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(editorState, command)
+    const newState = RichUtils.handleKeyCommand(editorContent, command)
     if (newState) {
       onChange(newState)
       return 'handled'
@@ -60,22 +59,22 @@ export default function InputEditor() {
 
   function onItalicClick(e) {
     e.preventDefault()
-    onChange(RichUtils.toggleInlineStyle(editorState, 'ITALIC'))
+    onChange(RichUtils.toggleInlineStyle(editorContent, 'ITALIC'))
   }
 
   function onBoldClick(e) {
     e.preventDefault()
-    onChange(RichUtils.toggleInlineStyle(editorState, 'BOLD'))
+    onChange(RichUtils.toggleInlineStyle(editorContent, 'BOLD'))
   }
 
   function onUnderlineClick(e) {
     e.preventDefault()
-    onChange(RichUtils.toggleInlineStyle(editorState, 'UNDERLINE'))
+    onChange(RichUtils.toggleInlineStyle(editorContent, 'UNDERLINE'))
   }
 
   function onHighlightClick(e) {
     e.preventDefault()
-    onChange(RichUtils.toggleInlineStyle(editorState, 'HIGHLIGHT'))
+    onChange(RichUtils.toggleInlineStyle(editorContent, 'HIGHLIGHT'))
   }
 }
 
@@ -83,7 +82,10 @@ const EntryEditorContent = styled.section`
   padding: 5px;
   line-height: 1.5;
   border: 1px solid lightgray;
-  color: #c0c0c0;
+  color: black;
+  ::placeholder {
+    color: #c0c0c0;
+  }
 `
 const BoldBtn = styled(Bold)`
   color: black;
@@ -124,5 +126,4 @@ const HighlightBtn = styled(Highlighter)`
 const EntryEditorButtons = styled.section`
   width: 70vw;
   display: flex;
-  z-index: 1000;
 `
