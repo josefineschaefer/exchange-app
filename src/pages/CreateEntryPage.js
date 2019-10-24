@@ -82,10 +82,6 @@ export default function CreateEntry({ onSubmit }) {
         ></CheckOptionsStyled>
       </div>
       <InputEditor editorContentState={[editorContent, setEditorContent]}/>
-      {/* <Label>
-        Eintrag
-        <EntryInputStyled rows="10" cols="33" name="text" />
-      </Label> */}
       <EntrySubmitBtn />
     </FormStyled>
   )
@@ -157,9 +153,6 @@ const FormStyled = styled.form`
   overflow-y: scroll;
   margin-bottom: 20px;
 `
-   const EntryInputStyled = styled.textarea`
-   padding: 5px;
- `
 
 const TitleInputStyled = styled.input`
   padding: 5px;

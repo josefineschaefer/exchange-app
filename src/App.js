@@ -20,9 +20,6 @@ function App() {
     getEntries().then(setEntries)
   }, [])
 
-  // const tags = entries.map(entry => entry.tags)
-  // console.log('tags', tags)
-
   const AlertTemplate = ({ style, message }) => (
     <AlertStyled style={style} >{message}</AlertStyled>
   )
@@ -84,9 +81,7 @@ function App() {
   }
 
   function createEntry(entryData) {
-    console.log('entryData', entryData)
     postEntry(entryData).then(entry => {
-      console.log('entry', entry)
       setEntries([...entries, entry])
     })
   }

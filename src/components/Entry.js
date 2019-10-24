@@ -33,22 +33,15 @@ export default function Entry({
   const [isTextVisible, setIsTextVisible] = useState(false)
   const sectionElement = useCallback(el => {
     if (el && editorContent) {
-      console.log(editorContent)
       const noteContent = JSON.parse(editorContent)
       const contentState = convertFromRaw(noteContent)
       const textOutput = stateToHTML(contentState)
-      console.log(textOutput)
-      console.log(el)
       el.innerHTML = textOutput
     }
   }, [editorContent])
 
   useEffect(()=>{
-    // else if (text) {
-    //   sectionElement.textContent = text
-    // }
   }, [editorContent])
-
 
 
   function toggleText() {
@@ -61,8 +54,6 @@ export default function Entry({
 
   const newArray = arrayOfTags
     .filter(item => item.includes(true)).map(item => item[0])
-
-//console.log('newArray', newArray)
 
   return (
     <EntryStyled onClick={toggleText}>
@@ -79,7 +70,8 @@ export default function Entry({
                   text,
                   tags,
                   image,
-                  id: _id
+                  id: _id, 
+                  editorContent
                 }
               }}
             >
@@ -98,7 +90,6 @@ export default function Entry({
           {image.map(picture => {
             return <EntryImageStyled src={picture} />
           })}
-          {/* {text} */}
           <section ref={sectionElement}></section>
         </EntryBodyStyled>
       )}
