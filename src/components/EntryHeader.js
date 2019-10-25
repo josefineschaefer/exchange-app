@@ -65,3 +65,4 @@ const TitleStyled = styled.div`
   width: 100%;
   justify-content: space-between;
 `
+

@@ -8,3 +8,4 @@ export default function ImageUploadWrapper({ children }) {
 const StyledImageUploadWrapper = styled.div`
   position: relative;
 `
+

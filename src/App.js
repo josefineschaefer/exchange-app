@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <AlertProvider template={AlertTemplate} message="true" {...options}>
+    <AlertProvider template={AlertTemplate} message={true} {...options}>
       <Router>
         <AppStyled>
           <Header> Mein Austauschjahr</Header>

@@ -28,7 +28,6 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       tags,
       title,
       fullDate,
-      text,
       image: pictures,
       editorContent: convertEditorInput()
     }
@@ -38,7 +37,6 @@ export default function EditEntry({ onSubmit, editEntryData }) {
   const newDate = new Date(editEntryData.fullDate)
   const [title, setTitle] = useState(editEntryData.title)
   const [fullDate, setFullDate] = useState(newDate)
-  const [text, setText] = useState(editEntryData.text)
   const [tags, setTags] = useState(editEntryData.tags)
   const [pictures, setPictures] = useState(editEntryData.image)
   const [editorContent, setEditorContent] = useState(EditorState.createWithContent(getContentState()))
@@ -112,16 +110,6 @@ function getContentState(){
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      <Label>
-        Eintrag
-        <EntryInputStyled
-          rows="10"
-          cols="33"
-          name="text"
-          value={text}
-          onChange={event => setText(event.target.value)}
-        />
-      </Label>
       <InputEditor editorContentState={[editorContent, setEditorContent]} value={editorContent}/>
       <Button>Änderungen speichern</Button>
     </FormStyled>
@@ -198,7 +186,4 @@ const ImageStyled = styled.img`
 const TitleInputStyled = styled.input`
   padding: 5px;
   font-size: 16px;
-`
-const EntryInputStyled = styled.textarea`
-  padding: 5px;
 `

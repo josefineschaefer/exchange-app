@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Tag from './Tag'
@@ -39,10 +39,6 @@ export default function Entry({
       el.innerHTML = textOutput
     }
   }, [editorContent])
-
-  useEffect(()=>{
-  }, [editorContent])
-
 
   function toggleText() {
     setIsTextVisible(!isTextVisible)
@@ -137,3 +133,4 @@ const EntryImageStyled = styled.img`
   width: 100%;
   border-radius: 0 0 5px 5px;
 `
+

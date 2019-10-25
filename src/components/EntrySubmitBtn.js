@@ -26,3 +26,4 @@ const EntrySubmitBtnStyled = styled.button`
   font-size: 1em;
   height: 60px;
 `
+
