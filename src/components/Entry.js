@@ -116,6 +116,7 @@ const ExpandIconStyled = styled(KeyboardArrowDown)`
     color: #3eb4be;
   }
 `
+
 const TitleStyled = styled.div`
   font-size: 1.5em;
   text-align: left;
