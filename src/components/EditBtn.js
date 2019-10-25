@@ -9,9 +9,8 @@ export default function EditBtn() {
 const EditIconStyled = styled(Create)`
   height: 16px;
   margin: 0 5px;
-  color: black;
+  color: var(--black);
   :hover {
-    color: #3eb4be;
+    color: var(--lightblue);
   }
 `
-

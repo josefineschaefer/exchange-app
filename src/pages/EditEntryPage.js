@@ -39,13 +39,15 @@ export default function EditEntry({ onSubmit, editEntryData }) {
   const [fullDate, setFullDate] = useState(newDate)
   const [tags, setTags] = useState(editEntryData.tags)
   const [pictures, setPictures] = useState(editEntryData.image)
-  const [editorContent, setEditorContent] = useState(EditorState.createWithContent(getContentState()))
+  const [editorContent, setEditorContent] = useState(
+    EditorState.createWithContent(getContentState())
+  )
 
-function getContentState(){
-  const noteContent = JSON.parse(editEntryData.editorContent)
-  const contentState = convertFromRaw(noteContent)
-  return contentState
-}
+  function getContentState() {
+    const noteContent = JSON.parse(editEntryData.editorContent)
+    const contentState = convertFromRaw(noteContent)
+    return contentState
+  }
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -110,12 +112,15 @@ function getContentState(){
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      <InputEditor editorContentState={[editorContent, setEditorContent]} value={editorContent}/>
+      <InputEditor
+        editorContentState={[editorContent, setEditorContent]}
+        value={editorContent}
+      />
       <Button>Änderungen speichern</Button>
     </FormStyled>
   )
 
-  function convertEditorInput(){
+  function convertEditorInput() {
     const contentState = editorContent.getCurrentContent()
     const noteContent = convertToRaw(contentState)
     return JSON.stringify(noteContent)
@@ -170,11 +175,11 @@ const DeleteBtnStyled = styled(Delete)`
   bottom: 10px;
   right: 10px;
   height: 25px;
-  color: white;
+  color: var(--white);
   cursor: pointer;
   z-index: 4;
   :hover {
-    color: #3eb4be;
+    color: var(--lightblue);
   }
 `
 const HiddenImageUploadStyled = styled.input`

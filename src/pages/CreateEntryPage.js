@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import axios from 'axios'
 import PropTypes from 'prop-types'
 import EntryDatePicker from '../components/EntryDatePicker'
 import AddImageBtn from '../components/AddImageBtn'
@@ -11,9 +10,7 @@ import EntrySubmitBtn from '../components/EntrySubmitBtn'
 import { useAlert } from 'react-alert'
 import InputEditor from '../components/InputEditor'
 import { EditorState, convertToRaw } from 'draft-js'
-
-const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
-const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
+import { uploadImage } from '../services'
 
 CreateEntry.propTypes = {
   onSubmit: PropTypes.func
@@ -81,17 +78,16 @@ export default function CreateEntry({ onSubmit }) {
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      <InputEditor editorContentState={[editorContent, setEditorContent]}/>
+      <InputEditor editorContentState={[editorContent, setEditorContent]} />
       <EntrySubmitBtn />
     </FormStyled>
   )
 
-  function convertEditorInput(){
+  function convertEditorInput() {
     const contentState = editorContent.getCurrentContent()
     const noteContent = convertToRaw(contentState)
     return JSON.stringify(noteContent)
   }
-
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -104,7 +100,7 @@ export default function CreateEntry({ onSubmit }) {
       fullDate,
       image: pictures,
       tags,
-      editorContent: convertEditorInput(),
+      editorContent: convertEditorInput()
     }
 
     onSubmit(data)
@@ -114,17 +110,7 @@ export default function CreateEntry({ onSubmit }) {
   }
 
   function upload(event) {
-    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
-    const formData = new FormData()
-    formData.append('file', event.target.files[0])
-    formData.append('upload_preset', PRESET)
-
-    axios
-      .post(url, formData, {
-        headers: {
-          'Content-type': 'multipart/form-data'
-        }
-      })
+    uploadImage(event)
       .then(response => {
         setPictures([...pictures, response.data.url])
       })
@@ -174,10 +160,10 @@ const DeleteBtnStyled = styled(Delete)`
   bottom: 10px;
   right: 10px;
   height: 25px;
-  color: white;
+  color: var(--white);
   cursor: pointer;
   z-index: 4;
   :hover {
-    color: #3eb4be;
+    color: var(--lightblue);
   }
 `

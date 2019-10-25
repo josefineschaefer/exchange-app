@@ -7,7 +7,7 @@ import EditBtn from './EditBtn'
 import DeleteBtn from './DeleteBtn'
 import EntryDate from './EntryDate'
 import { KeyboardArrowDown } from 'styled-icons/material/KeyboardArrowDown'
-import {stateToHTML} from 'draft-js-export-html';
+import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'
 
 Entry.propTypes = {
@@ -31,14 +31,17 @@ export default function Entry({
   editorContent
 }) {
   const [isTextVisible, setIsTextVisible] = useState(false)
-  const sectionElement = useCallback(el => {
-    if (el && editorContent) {
-      const noteContent = JSON.parse(editorContent)
-      const contentState = convertFromRaw(noteContent)
-      const textOutput = stateToHTML(contentState)
-      el.innerHTML = textOutput
-    }
-  }, [editorContent])
+  const sectionElement = useCallback(
+    el => {
+      if (el && editorContent) {
+        const noteContent = JSON.parse(editorContent)
+        const contentState = convertFromRaw(noteContent)
+        const textOutput = stateToHTML(contentState)
+        el.innerHTML = textOutput
+      }
+    },
+    [editorContent]
+  )
 
   function toggleText() {
     setIsTextVisible(!isTextVisible)
@@ -49,7 +52,8 @@ export default function Entry({
   })
 
   const newArray = arrayOfTags
-    .filter(item => item.includes(true)).map(item => item[0])
+    .filter(item => item.includes(true))
+    .map(item => item[0])
 
   return (
     <EntryStyled onClick={toggleText}>
@@ -66,7 +70,7 @@ export default function Entry({
                   text,
                   tags,
                   image,
-                  id: _id, 
+                  id: _id,
                   editorContent
                 }
               }}
@@ -83,9 +87,9 @@ export default function Entry({
       </HeaderStyled>
       {isTextVisible && (
         <EntryBodyStyled>
-          {image.map(picture => {
-            return <EntryImageStyled src={picture} />
-          })}
+          {image.map(picture => (
+            <EntryImageStyled src={picture} />
+          ))}
           <section ref={sectionElement}></section>
         </EntryBodyStyled>
       )}
@@ -101,7 +105,7 @@ const EntryStyled = styled.div`
   flex-direction: column;
 `
 const HeaderStyled = styled.div`
-  background-color: white;
+  background-color: var(--white);
   padding: 30px;
   position: relative;
   box-shadow: 5px 5px 10px 1px rgb(247, 247, 252);
@@ -111,11 +115,12 @@ const ExpandIconStyled = styled(KeyboardArrowDown)`
   height: 30px;
   z-index: 5;
   right: 45%;
-  color: black;
+  color: var(--black);
   :hover {
-    color: #3eb4be;
+    color: var(--lightblue);
   }
 `
+
 const TitleStyled = styled.div`
   font-size: 1.5em;
   text-align: left;
@@ -124,7 +129,7 @@ const TitleStyled = styled.div`
   justify-content: space-between;
 `
 const EntryBodyStyled = styled.div`
-  background-color: white;
+  background-color: var(--white);
   padding: 20px;
   border-radius: 0 0 5px 5px;
 `
@@ -133,4 +138,3 @@ const EntryImageStyled = styled.img`
   width: 100%;
   border-radius: 0 0 5px 5px;
 `
-

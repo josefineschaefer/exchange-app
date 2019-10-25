@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   const AlertTemplate = ({ style, message }) => (
-    <AlertStyled style={style} >{message}</AlertStyled>
+    <AlertStyled style={style}>{message}</AlertStyled>
   )
 
   const options = {
@@ -35,7 +35,7 @@ function App() {
     <AlertProvider template={AlertTemplate} message={true} {...options}>
       <Router>
         <AppStyled>
-          <Header> Mein Austauschjahr</Header>
+          <Header>Mein Austauschjahr</Header>
           <Route
             exact
             path="/"
@@ -118,13 +118,13 @@ const AppStyled = styled.div`
   top: 0;
   bottom: 0;
   height: 100%;
-  background-color: #white;
+  background-color: var(--white);
 `
 
 const AlertStyled = styled.div`
   border: none;
   padding: 20px;
-  background-color: #c3efdf;
+  background-color: var(--lightturquoise);
   font-weight: bold;
   border-radius: 5px;
 `

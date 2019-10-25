@@ -34,7 +34,7 @@ const TagFilterStyled = styled.button`
   padding: 10px;
   margin: 2px;
   border-radius: 3px;
-  background-color: #c3efdf;
+  background-color: var(--lightturquoise);
   border: none;
   width: 100%;
 `

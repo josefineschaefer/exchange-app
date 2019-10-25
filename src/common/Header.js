@@ -9,17 +9,19 @@ Header.propTypes = {
 
 export default function Header({ children }) {
   return (
-    <>
-      <HeaderStyled>
-        <BookStyled />
-        <TextStyled>{children}</TextStyled>
-      </HeaderStyled>
-    </>
+    <HeaderStyled>
+      <BookStyled />
+      <TextStyled>{children}</TextStyled>
+    </HeaderStyled>
   )
 }
 
-const HeaderStyled = styled.div`
-  background-image: linear-gradient(to left, #5ed2a7, #3eb4be);
+const HeaderStyled = styled.header`
+  background-image: linear-gradient(
+    to left,
+    var(--turquoise),
+    var(--lightblue)
+  );
   display: flex;
   justify-content: space-around;
   align-items: center;
