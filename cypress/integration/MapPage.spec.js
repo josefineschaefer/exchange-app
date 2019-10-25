@@ -2,6 +2,6 @@
 
 context('MapPage', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/map')
+    cy.visit('/map')
   })
 })

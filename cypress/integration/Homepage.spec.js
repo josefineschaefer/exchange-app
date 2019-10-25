@@ -2,7 +2,7 @@
 
 context('Homepage', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
+    cy.visit('/')
   })
 
   it('has the right App title', () => {
@@ -20,9 +20,5 @@ context('Homepage', () => {
 it('has a navigation', ()=> {
   cy.get('nav').should('have.length', 1)
 })
-
-
-
-
 })
 

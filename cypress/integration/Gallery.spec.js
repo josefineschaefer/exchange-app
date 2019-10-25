@@ -2,7 +2,7 @@
 
 context('Gallery', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/gallery')
+    cy.visit('/gallery')
   })
 
   it('has filters', () => {
