@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import EntryDatePicker from '../components/EntryDatePicker'
-import AddImageBtn from '../components/AddImageBtn'
+import AddImageBtn from '../icons/AddImageBtn'
 import Label from '../components/Label'
-import { Delete } from 'styled-icons/material/Delete'
+import DeleteBtn from '../icons/DeleteBtnWhite'
 import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import EntrySubmitBtn from '../components/EntrySubmitBtn'
 import { useAlert } from 'react-alert'
@@ -55,7 +55,7 @@ export default function CreateEntry({ onSubmit, editEntryData = {} }) {
       <ImageUploadWrapper>
         {pictures.map(pictureUrl => (
           <ImageUploadWrapper>
-            <DeleteBtnStyled onClick={() => deleteImage(pictureUrl)} />
+            <DeleteBtn onClick={() => deleteImage(pictureUrl)} />
             <ImageStyled src={pictureUrl} alt="" />
           </ImageUploadWrapper>
         ))}
@@ -199,17 +199,4 @@ const ImageStyled = styled.img`
 `
 const CheckOptionsStyled = styled.input`
   margin-right: 20px;
-`
-
-const DeleteBtnStyled = styled(Delete)`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  height: 25px;
-  color: var(--white);
-  cursor: pointer;
-  z-index: 4;
-  :hover {
-    color: var(--lightblue);
-  }
 `

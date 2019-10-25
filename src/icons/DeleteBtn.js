@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { Delete } from 'styled-icons/material/Delete'
 
 DeleteBtn.propTypes = {
-  deleteData: PropTypes.func
-  // _id: PropTypes.string,
+  deleteData: PropTypes.func,
+  _id: PropTypes.string,
 }
 
 export default function DeleteBtn({ deleteData, _id }) {
