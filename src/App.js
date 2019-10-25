@@ -35,7 +35,7 @@ function App() {
     <AlertProvider template={AlertTemplate} message={true} {...options}>
       <Router>
         <AppStyled>
-          <Header> Mein Austauschjahr</Header>
+          <Header>Mein Austauschjahr</Header>
           <Route
             exact
             path="/"

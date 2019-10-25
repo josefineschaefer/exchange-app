@@ -16,7 +16,7 @@ export default function Header({ children }) {
   )
 }
 
-const HeaderStyled = styled.div`
+const HeaderStyled = styled.header`
   background-image: linear-gradient(
     to left,
     var(--turquoise),

@@ -27,7 +27,7 @@ export default function Navigation() {
 
 const LinkStyled = styled(NavLink)`
   flex-grow: 1;
-  color: var(--var(--black));
+  color: var(--black);
   text-decoration: none;
   display: flex;
   justify-content: center;
