@@ -19,7 +19,7 @@ export default function EntryBody({ text, image }) {
 }
 
 const EntryBodyStyled = styled.div`
-  background-color: white;
+  background-color: var(--white);
   padding: 20px;
   border-radius: 0 0 5px 5px;
 `

@@ -6,7 +6,7 @@ context('CreatePage', () => {
   })
 
   it('has two input elements and one button', () => {
-    cy.get('input').shoud('have.length', 2)
+    cy.get('input').should('have.length', 6)
     cy.get('button').should('have.length', 1).contains('erstellen')
   })
 

@@ -108,7 +108,7 @@ const IconsStyled = styled.div`
 const GridVerticalStyled = styled(GridVertical)`
   height: 48px;
   padding: 5px;
-  color: white;
+  color: var(--white);
   :hover {
     color: #5ed2a7;
   }
@@ -116,7 +116,7 @@ const GridVerticalStyled = styled(GridVertical)`
 const ImageIconStyled = styled(Image)`
   height: 48px;
   padding: 5px;
-  color: white;
+  color: var(--white);
   :hover {
     color: #5ed2a7;
   }

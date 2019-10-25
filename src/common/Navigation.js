@@ -27,38 +27,38 @@ export default function Navigation() {
 
 const LinkStyled = styled(NavLink)`
   flex-grow: 1;
-  color: black;
+  color: var(--var(--black));
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #5ed2a7;
+  background: var(--turquoise);
 `
 
 const HomeStyled = styled(HomeCircle)`
   height: 30px;
-  color: black;
+  color: var(--black);
   ${LinkStyled}.active & {
-    color: white;
+    color: var(--white);
   }
 `
 const CreateStyled = styled(EditAlt)`
   height: 30px;
   ${LinkStyled}.active & {
-    color: white;
+    color: var(--white);
   }
 `
 
 const GalleryStyled = styled(PhotoAlbum)`
   height: 30px;
   ${LinkStyled}.active & {
-    color: white;
+    color: var(--white);
   }
 `
 const MapStyled = styled(Map)`
   height: 30px;
   ${LinkStyled}.active & {
-    color: white;
+    color: var(--white);
   }
 `
 

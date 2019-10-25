@@ -12,7 +12,7 @@ export default function InputEditor({ editorContentState }) {
 
   const styleMap = {
     HIGHLIGHT: {
-      backgroundColor: '#c3efdf'
+      backgroundColor: 'var(--lightturquoise)'
     }
   }
 
@@ -82,46 +82,46 @@ const EntryEditorContent = styled.section`
   padding: 5px;
   line-height: 1.5;
   border: 1px solid lightgray;
-  color: black;
+  color: var(--black);
   ::placeholder {
     color: #c0c0c0;
   }
 `
 const BoldBtn = styled(Bold)`
-  color: black;
+  color: var(--black);
   height: 32px;
   padding: 5px;
   margin: 10px;
-  border: 1px solid #5ed2a7;
+  border: 1px solid var(--turquoise);
   border-radius: 5px;
-  background-color: #5ed2a7;
+  background-color: var(--turquoise);
 `
 const ItalicBtn = styled(Italic)`
-  color: black;
+  color: var(--black);
   height: 32px;
   padding: 5px;
   margin: 10px;
-  border: 1px solid #5ed2a7;
+  border: 1px solid var(--turquoise);
   border-radius: 5px;
-  background-color: #5ed2a7;
+  background-color: var(--turquoise);
 `
 const UnderlineBtn = styled(Underline)`
   color: black;
   height: 32px;
   padding: 5px;
   margin: 10px;
-  border: 1px solid #5ed2a7;
+  border: 1px solid var(--turquoise);
   border-radius: 5px;
-  background-color: #5ed2a7;
+  background-color: var(--turquoise);
 `
 const HighlightBtn = styled(Highlighter)`
-  color: black;
+  color: var(--black);
   height: 32px;
   padding: 5px;
   margin: 10px;
-  border: 1px solid #5ed2a7;
+  border: 1px solid var(--turquoise);
   border-radius: 5px;
-  background-color: #5ed2a7;
+  background-color: var(--turquoise);
 `
 const EntryEditorButtons = styled.section`
   width: 70vw;

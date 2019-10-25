@@ -19,11 +19,10 @@ export default function EntrySubmitBtn({ children }) {
 const EntrySubmitBtnStyled = styled.button`
   border: none;
   padding: 20px;
-  background-color: #5ed2a7;
+  background-color: var(--turquoise);
   font-weight: bold;
   border-radius: 5px;
   box-shadow: 0 10px 10px #0002;
   font-size: 1em;
   height: 60px;
 `
-
