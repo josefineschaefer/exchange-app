@@ -5,7 +5,6 @@ import { Editor, RichUtils } from 'draft-js'
 import { Bold } from 'styled-icons/fa-solid/Bold'
 import { Italic } from 'styled-icons/fa-solid/Italic'
 import { Underline } from 'styled-icons/fa-solid/Underline'
-import { Highlighter } from 'styled-icons/fa-solid/Highlighter'
 
 export default function InputEditor({ editorContentState }) {
   const [editorContent, setEditorContent] = editorContentState
@@ -27,9 +26,6 @@ export default function InputEditor({ editorContentState }) {
         </Link>
         <Link to="/editor" onClick={onUnderlineClick}>
           <UnderlineBtn alt="Underscore" />
-        </Link>
-        <Link to="/editor" onClick={onHighlightClick}>
-          <HighlightBtn alt="Highlight" />
         </Link>
       </EntryEditorButtons>
       <EntryEditorContent>
@@ -71,11 +67,6 @@ export default function InputEditor({ editorContentState }) {
     e.preventDefault()
     onChange(RichUtils.toggleInlineStyle(editorContent, 'UNDERLINE'))
   }
-
-  function onHighlightClick(e) {
-    e.preventDefault()
-    onChange(RichUtils.toggleInlineStyle(editorContent, 'HIGHLIGHT'))
-  }
 }
 
 const EntryEditorContent = styled.section`
@@ -114,15 +105,7 @@ const UnderlineBtn = styled(Underline)`
   border-radius: 5px;
   background-color: var(--turquoise);
 `
-const HighlightBtn = styled(Highlighter)`
-  color: var(--black);
-  height: 32px;
-  padding: 5px;
-  margin: 10px;
-  border: 1px solid var(--turquoise);
-  border-radius: 5px;
-  background-color: var(--turquoise);
-`
+
 const EntryEditorButtons = styled.section`
   width: 70vw;
   display: flex;

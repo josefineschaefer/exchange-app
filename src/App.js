@@ -7,7 +7,6 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import Header from './common/Header'
 import HomePage from './pages/HomePage'
 import CreateEntry from './pages/CreateEntryPage'
-import EditEntry from './pages/EditEntryPage'
 import Navigation from './common/Navigation'
 import Gallery from './pages/GalleryPage'
 import MapPage from './pages/MapPage'
@@ -51,7 +50,7 @@ function App() {
             path="/edit"
             render={props => {
               return (
-                <EditEntry
+                <CreateEntry
                   onSubmit={editEntry}
                   editEntryData={props.location.entryData}
                 />

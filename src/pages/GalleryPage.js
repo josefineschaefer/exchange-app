@@ -10,8 +10,10 @@ Gallery.propTypes = {
 }
 
 export default function Gallery({ entries, onSelectTag }) {
+  console.log(typeof entries);
   const allImages = entries
     .map(entry => entry.image)
+
     .join(',')
     .split(',')
 

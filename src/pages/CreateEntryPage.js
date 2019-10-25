@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import EntryDatePicker from '../components/EntryDatePicker'
@@ -9,25 +10,47 @@ import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import EntrySubmitBtn from '../components/EntrySubmitBtn'
 import { useAlert } from 'react-alert'
 import InputEditor from '../components/InputEditor'
-import { EditorState, convertToRaw } from 'draft-js'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { uploadImage } from '../services'
 
 CreateEntry.propTypes = {
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  editEntryData: PropTypes.object
 }
 
-export default function CreateEntry({ onSubmit }) {
-  const [editorContent, setEditorContent] = useState(EditorState.createEmpty())
-  const [pictures, setPictures] = useState([])
-  const [date, setDate] = useState(Date.now())
-  const [tags, setTags] = useState({
-    Gastfamilie: false,
-    Schule: false,
-    Ausflug: false
-  })
-  const alert = useAlert()
+export default function CreateEntry({ onSubmit, editEntryData = {} }) {
+  const newDate = editEntryData.fullDate
+    ? new Date(editEntryData.fullDate)
+    : null
 
-  return (
+  const [isCreated, setIsCreated] = useState(false)
+  const [title, setTitle] = useState(
+    editEntryData.title ? editEntryData.title : ''
+  )
+  const [pictures, setPictures] = useState(
+    editEntryData.image ? editEntryData.image : []
+  )
+  const [date, setDate] = useState(newDate ? newDate : Date.now())
+  const [tags, setTags] = useState(
+    editEntryData.tags
+      ? editEntryData.tags
+      : {
+          Gastfamilie: false,
+          Schule: false,
+          Ausflug: false
+        }
+  )
+  const [editorContent, setEditorContent] = useState(
+    editEntryData.editorContent &&
+      EditorState.createWithContent(getContentState())
+      ? EditorState.createWithContent(getContentState())
+      : EditorState.createEmpty()
+  )
+
+  const alert = useAlert()
+  return isCreated ? (
+    <Redirect to="/" />
+  ) : (
     <FormStyled onSubmit={handleSubmit}>
       <ImageUploadWrapper>
         {pictures.map(pictureUrl => (
@@ -49,11 +72,20 @@ export default function CreateEntry({ onSubmit }) {
       </Label>
       <Label>
         Titel
-        <TitleInputStyled name="title" />
+        <TitleInputStyled
+          name="title"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
+        />
       </Label>
       <Label>
         Datum
-        <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
+        <EntryDatePicker
+          name="date"
+          date={date}
+          value={date}
+          onChange={event => setDate(event.target.value)}
+        />
       </Label>
       <div>
         Gastfamilie
@@ -61,6 +93,7 @@ export default function CreateEntry({ onSubmit }) {
           type="checkbox"
           name="tag"
           value="Gastfamilie"
+          checked={tags['Gastfamilie']}
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
         Schule
@@ -68,6 +101,7 @@ export default function CreateEntry({ onSubmit }) {
           type="checkbox"
           name="tag"
           value="Schule"
+          checked={tags['Schule']}
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
         Ausflug
@@ -75,6 +109,7 @@ export default function CreateEntry({ onSubmit }) {
           type="checkbox"
           name="tag"
           value="Ausflug"
+          checked={tags['Ausflug']}
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
@@ -103,7 +138,9 @@ export default function CreateEntry({ onSubmit }) {
       editorContent: convertEditorInput()
     }
 
-    onSubmit(data)
+    setIsCreated(true)
+    editEntryData.id ? onSubmit(editEntryData.id, data) : onSubmit(data)
+
     form.reset()
     setPictures([])
     form.title.focus()
@@ -120,12 +157,21 @@ export default function CreateEntry({ onSubmit }) {
       })
   }
 
-  function handleDateChange(value) {
-    setDate(value)
-  }
   function handleCheck(event) {
-    setTags({ ...tags, [event.target.value]: !tags[event.target.value] })
+    const newTags = { ...tags, [event.target.value]: !tags[event.target.value] }
+    setTags(newTags)
   }
+
+  function getContentState() {
+    try {
+      const noteContent = JSON.parse(editEntryData.editorContent)
+      const contentState = convertFromRaw(noteContent)
+      return contentState
+    } catch {
+      console.log('tried to parse json')
+    }
+  }
+
   function deleteImage(pictureUrl) {
     const newPictures = pictures.filter(picture => picture !== pictureUrl)
     setPictures(newPictures)
