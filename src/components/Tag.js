@@ -16,4 +16,3 @@ const TagStyled = styled.span`
   margin-right: 5px;
   background-color: #5ed2a7;
 `
-

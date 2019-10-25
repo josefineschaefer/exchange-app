@@ -25,3 +25,4 @@ const DateStyled = styled.span`
   display: block;
   height: 30px;
 `
+
