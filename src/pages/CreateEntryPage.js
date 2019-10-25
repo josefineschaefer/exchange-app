@@ -9,6 +9,8 @@ import { Delete } from 'styled-icons/material/Delete'
 import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import EntrySubmitBtn from '../components/EntrySubmitBtn'
 import { useAlert } from 'react-alert'
+import InputEditor from '../components/InputEditor'
+import { EditorState, convertToRaw } from 'draft-js'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -18,6 +20,7 @@ CreateEntry.propTypes = {
 }
 
 export default function CreateEntry({ onSubmit }) {
+  const [editorContent, setEditorContent] = useState(EditorState.createEmpty())
   const [pictures, setPictures] = useState([])
   const [date, setDate] = useState(Date.now())
   const [tags, setTags] = useState({
@@ -25,7 +28,6 @@ export default function CreateEntry({ onSubmit }) {
     Schule: false,
     Ausflug: false
   })
-
   const alert = useAlert()
 
   return (
@@ -79,13 +81,18 @@ export default function CreateEntry({ onSubmit }) {
           onClick={event => handleCheck(event)}
         ></CheckOptionsStyled>
       </div>
-      <Label>
-        Eintrag
-        <EntryInputStyled rows="10" cols="33" name="text" />
-      </Label>
+      <InputEditor editorContentState={[editorContent, setEditorContent]}/>
       <EntrySubmitBtn />
     </FormStyled>
   )
+
+  function convertEditorInput(){
+    const contentState = editorContent.getCurrentContent()
+    const noteContent = convertToRaw(contentState)
+    return JSON.stringify(noteContent)
+  }
+
+
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
@@ -96,7 +103,8 @@ export default function CreateEntry({ onSubmit }) {
       ...data,
       fullDate,
       image: pictures,
-      tags
+      tags,
+      editorContent: convertEditorInput(),
     }
 
     onSubmit(data)
@@ -140,13 +148,10 @@ export default function CreateEntry({ onSubmit }) {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   overflow-y: scroll;
   margin-bottom: 20px;
-`
-const EntryInputStyled = styled.textarea`
-  padding: 5px;
 `
 
 const TitleInputStyled = styled.input`

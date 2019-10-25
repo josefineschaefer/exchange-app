@@ -24,7 +24,8 @@ export default function Homepage({ entries, deleteData, editData }) {
               key={entry._id}
               deleteData={deleteData}
               editData={editData}
-              tag={entry.tag}
+              tags={entry.tags} 
+              editorContent={entry.editorContent}
             />
           ))}
       </Scroller>

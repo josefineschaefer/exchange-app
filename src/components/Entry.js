@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Tag from './Tag'
@@ -7,6 +7,8 @@ import EditBtn from './EditBtn'
 import DeleteBtn from './DeleteBtn'
 import EntryDate from './EntryDate'
 import { KeyboardArrowDown } from 'styled-icons/material/KeyboardArrowDown'
+import {stateToHTML} from 'draft-js-export-html';
+import { convertFromRaw } from 'draft-js'
 
 Entry.propTypes = {
   title: PropTypes.string,
@@ -25,9 +27,23 @@ export default function Entry({
   deleteData,
   image,
   tags,
-  children
+  children,
+  editorContent
 }) {
   const [isTextVisible, setIsTextVisible] = useState(false)
+  const sectionElement = useCallback(el => {
+    if (el && editorContent) {
+      const noteContent = JSON.parse(editorContent)
+      const contentState = convertFromRaw(noteContent)
+      const textOutput = stateToHTML(contentState)
+      el.innerHTML = textOutput
+    }
+  }, [editorContent])
+
+  useEffect(()=>{
+  }, [editorContent])
+
+
   function toggleText() {
     setIsTextVisible(!isTextVisible)
   }
@@ -37,8 +53,7 @@ export default function Entry({
   })
 
   const newArray = arrayOfTags
-    .filter(item => item.includes(true))
-    .map(item => item[0])
+    .filter(item => item.includes(true)).map(item => item[0])
 
   return (
     <EntryStyled onClick={toggleText}>
@@ -55,7 +70,8 @@ export default function Entry({
                   text,
                   tags,
                   image,
-                  id: _id
+                  id: _id, 
+                  editorContent
                 }
               }}
             >
@@ -74,7 +90,7 @@ export default function Entry({
           {image.map(picture => {
             return <EntryImageStyled src={picture} />
           })}
-          {text}
+          <section ref={sectionElement}></section>
         </EntryBodyStyled>
       )}
     </EntryStyled>

@@ -8,6 +8,8 @@ import { Delete } from 'styled-icons/material/Delete'
 import AddImageBtn from '../components/AddImageBtn'
 import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import axios from 'axios'
+import InputEditor from '../components/InputEditor'
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -26,8 +28,9 @@ export default function EditEntry({ onSubmit, editEntryData }) {
       tags,
       title,
       fullDate,
-      text, 
-      image: pictures
+      text,
+      image: pictures,
+      editorContent: convertEditorInput()
     }
     onSubmit(editEntryData.id, newEditEntryData)
   }
@@ -38,6 +41,13 @@ export default function EditEntry({ onSubmit, editEntryData }) {
   const [text, setText] = useState(editEntryData.text)
   const [tags, setTags] = useState(editEntryData.tags)
   const [pictures, setPictures] = useState(editEntryData.image)
+  const [editorContent, setEditorContent] = useState(EditorState.createWithContent(getContentState()))
+
+function getContentState(){
+  const noteContent = JSON.parse(editEntryData.editorContent)
+  const contentState = convertFromRaw(noteContent)
+  return contentState
+}
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -112,11 +122,18 @@ export default function EditEntry({ onSubmit, editEntryData }) {
           onChange={event => setText(event.target.value)}
         />
       </Label>
+      <InputEditor editorContentState={[editorContent, setEditorContent]} value={editorContent}/>
       <Button>Änderungen speichern</Button>
     </FormStyled>
   )
+
+  function convertEditorInput(){
+    const contentState = editorContent.getCurrentContent()
+    const noteContent = convertToRaw(contentState)
+    return JSON.stringify(noteContent)
+  }
+
   function handleCheck(event) {
-    console.log(event.target.value, !tags[event.target.value])
     const newTags = { ...tags, [event.target.value]: !tags[event.target.value] }
     setTags(newTags)
   }
@@ -155,7 +172,7 @@ const CheckOptionsStyled = styled.input`
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   overflow-y: scroll;
 `
