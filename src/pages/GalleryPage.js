@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import TagFilter from '../components/TagFilter'
-import GridVerticalIcon from '../icons/GridVertical'
-import ImageIcon from '../icons/Image'
+import { GridVertical } from 'styled-icons/boxicons-regular/GridVertical'
+import { Image } from 'styled-icons/fa-solid/Image'
 
 Gallery.propTypes = {
   image: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default function Gallery({ entries, onSelectTag }) {
-  console.log(typeof entries)
   const allImages = entries
     .map(entry => entry.image)
 
@@ -28,8 +27,8 @@ export default function Gallery({ entries, onSelectTag }) {
         ></TagFilterStyled>
       </FilterWrapperStyled>
       <IconsStyled>
-        <GridVerticalIcon onClick={showGrid} />
-        <ImageIcon onClick={showFullView} />
+        <GridVerticalStyled onClick={showGrid} />
+        <ImageIconStyled onClick={showFullView} />
       </IconsStyled>
       {renderGalleryView()}
     </GalleryStyled>
@@ -106,4 +105,20 @@ const IconsStyled = styled.div`
   display: flex;
   left: 10px;
   bottom: 70px;
+`
+const GridVerticalStyled = styled(GridVertical)`
+  height: 48px;
+  padding: 5px;
+  color: var(--white);
+  :hover {
+    color: #5ed2a7;
+  }
+`
+const ImageIconStyled = styled(Image)`
+  height: 48px;
+  padding: 5px;
+  color: var(--white);
+  :hover {
+    color: #5ed2a7;
+  }
 `

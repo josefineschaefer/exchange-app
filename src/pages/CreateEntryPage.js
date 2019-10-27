@@ -83,8 +83,7 @@ export default function CreateEntry({ onSubmit, editEntryData = {} }) {
         <EntryDatePicker
           name="date"
           date={date}
-          value={date}
-          onChange={event => setDate(event.target.value)}
+          onChange={handleDateChange}
         />
       </Label>
       <div>
@@ -122,6 +121,10 @@ export default function CreateEntry({ onSubmit, editEntryData = {} }) {
     const contentState = editorContent.getCurrentContent()
     const noteContent = convertToRaw(contentState)
     return JSON.stringify(noteContent)
+  }
+
+  function handleDateChange(value) {
+    setDate(value)
   }
 
   function handleSubmit(event) {
