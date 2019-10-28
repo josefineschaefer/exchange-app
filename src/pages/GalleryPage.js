@@ -37,7 +37,7 @@ export default function Gallery({ entries, onSelectTag }) {
   function showGrid() {
     setGridView(true)
   }
-
+  
   function showFullView() {
     setGridView(false)
   }

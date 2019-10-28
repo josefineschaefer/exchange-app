@@ -5,13 +5,12 @@ import PropTypes from 'prop-types'
 import EntryDatePicker from '../components/EntryDatePicker'
 import AddImageBtn from '../icons/AddImageBtn'
 import Label from '../components/Label'
-import DeleteBtn from '../icons/DeleteBtnWhite'
 import ImageUploadWrapper from '../components/ImageUploadWrapper'
 import EntrySubmitBtn from '../components/EntrySubmitBtn'
-import { useAlert } from 'react-alert'
 import InputEditor from '../components/InputEditor'
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { uploadImage } from '../services'
+import { Delete } from 'styled-icons/material/Delete'
 
 CreateEntry.propTypes = {
   onSubmit: PropTypes.func,
@@ -47,7 +46,6 @@ export default function CreateEntry({ onSubmit, editEntryData = {} }) {
       : EditorState.createEmpty()
   )
 
-  const alert = useAlert()
   return isCreated ? (
     <Redirect to="/" />
   ) : (
@@ -55,7 +53,7 @@ export default function CreateEntry({ onSubmit, editEntryData = {} }) {
       <ImageUploadWrapper>
         {pictures.map(pictureUrl => (
           <ImageUploadWrapper>
-            <DeleteBtn onClick={() => deleteImage(pictureUrl)} />
+            <DeleteBtnStyled onClick={() => deleteImage(pictureUrl)} />
             <ImageStyled src={pictureUrl} alt="" />
           </ImageUploadWrapper>
         ))}
@@ -80,11 +78,7 @@ export default function CreateEntry({ onSubmit, editEntryData = {} }) {
       </Label>
       <Label>
         Datum
-        <EntryDatePicker
-          name="date"
-          date={date}
-          onChange={handleDateChange}
-        />
+        <EntryDatePicker name="date" date={date} onChange={handleDateChange} />
       </Label>
       <div>
         Gastfamilie
@@ -188,12 +182,10 @@ const FormStyled = styled.form`
   overflow-y: scroll;
   margin-bottom: 20px;
 `
-
 const TitleInputStyled = styled.input`
   padding: 5px;
   font-size: 16px;
 `
-
 const InputStyled = styled.input`
   display: none;
 `
@@ -202,4 +194,16 @@ const ImageStyled = styled.img`
 `
 const CheckOptionsStyled = styled.input`
   margin-right: 20px;
+`
+const DeleteBtnStyled = styled(Delete)`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 25px;
+  color: var(--white);
+  cursor: pointer;
+  z-index: 4;
+  :hover {
+    color: var(--lightblue);
+  }
 `

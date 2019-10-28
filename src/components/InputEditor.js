@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { Editor, RichUtils } from 'draft-js'
 import { Bold } from 'styled-icons/fa-solid/Bold'
@@ -10,7 +9,6 @@ import PropTypes from 'prop-types'
 InputEditor.propTypes = {
   editorContentState: PropTypes.array
 }
-
 
 export default function InputEditor({ editorContentState }) {
   const [editorContent, setEditorContent] = editorContentState
@@ -24,15 +22,9 @@ export default function InputEditor({ editorContentState }) {
   return (
     <>
       <EntryEditorButtons>
-        <Link to="/editor" onClick={onBoldClick}>
-          <BoldBtn alt="Bold" />
-        </Link>
-        <Link to="/editor" onClick={onItalicClick}>
-          <ItalicBtn alt="Italic" />
-        </Link>
-        <Link to="/editor" onClick={onUnderlineClick}>
-          <UnderlineBtn alt="Underscore" />
-        </Link>
+        <BoldBtn onClick={onBoldClick} />
+        <ItalicBtn onClick={onItalicClick} />
+        <UnderlineBtn onClick={onUnderlineClick} />
       </EntryEditorButtons>
       <EntryEditorContent>
         <Editor
@@ -85,34 +77,32 @@ const EntryEditorContent = styled.section`
   }
 `
 const BoldBtn = styled(Bold)`
-  color: var(--black);
-  height: 32px;
   padding: 5px;
   margin: 10px;
   border: 1px solid var(--turquoise);
   border-radius: 5px;
   background-color: var(--turquoise);
+  height: 32px;
 `
 const ItalicBtn = styled(Italic)`
-  color: var(--black);
-  height: 32px;
   padding: 5px;
   margin: 10px;
   border: 1px solid var(--turquoise);
   border-radius: 5px;
   background-color: var(--turquoise);
+  height: 32px;
 `
 const UnderlineBtn = styled(Underline)`
-  color: black;
-  height: 32px;
   padding: 5px;
   margin: 10px;
   border: 1px solid var(--turquoise);
   border-radius: 5px;
   background-color: var(--turquoise);
+  height: 32px;
 `
 
 const EntryEditorButtons = styled.section`
   width: 70vw;
   display: flex;
+  color: var(--black);
 `

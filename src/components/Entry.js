@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 import EditBtn from '../icons/EditBtn'
 import DeleteBtn from '../icons/DeleteBtn'
 import EntryDate from './EntryDate'
-import { KeyboardArrowDown } from 'styled-icons/material/KeyboardArrowDown'
+import ExpandIcon from '../icons/ExpandIcon'
 import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'
 
@@ -54,7 +54,7 @@ export default function Entry({
     return [key, tags[key]]
   })
 
-  const newArray = arrayOfTags
+  const tagList = arrayOfTags
     .filter(item => item.includes(true))
     .map(item => item[0])
 
@@ -85,8 +85,8 @@ export default function Entry({
         </TitleStyled>
         <EntryDate fullDate={fullDate}></EntryDate>
         {children}
-        <div>{newArray && newArray.map(tag => <Tag tag={tag} />)}</div>
-        <ExpandIconStyled />
+        <div>{tagList && tagList.map(tag => <Tag tag={tag} />)}</div>
+        <ExpandIcon />
       </HeaderStyled>
       {isTextVisible && (
         <EntryBodyStyled>
@@ -113,17 +113,6 @@ const HeaderStyled = styled.div`
   position: relative;
   box-shadow: 5px 5px 10px 1px rgb(247, 247, 252);
 `
-const ExpandIconStyled = styled(KeyboardArrowDown)`
-  position: absolute;
-  height: 30px;
-  z-index: 5;
-  right: 45%;
-  color: var(--black);
-  :hover {
-    color: var(--lightblue);
-  }
-`
-
 const TitleStyled = styled.div`
   font-size: 1.5em;
   text-align: left;
@@ -136,7 +125,6 @@ const EntryBodyStyled = styled.div`
   padding: 20px;
   border-radius: 0 0 5px 5px;
 `
-
 const EntryImageStyled = styled.img`
   width: 100%;
   border-radius: 0 0 5px 5px;

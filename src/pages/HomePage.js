@@ -37,12 +37,10 @@ const StyledHomePage = styled.div`
   display: grid;
   overflow-y: auto;
 `
-
 const StyledHeaderImage = styled.img`
   width: 100%;
   padding: 20px;
 `
-
 const Scroller = styled.div`
   overflow-y: auto;
   scroll-behavior: smooth;

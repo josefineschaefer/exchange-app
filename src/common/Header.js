@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import { BookOpen } from 'styled-icons/fa-solid/BookOpen'
+import Icon from '../icons/Icon'
 
 Header.propTypes = {
   children: PropTypes.node
@@ -10,8 +10,8 @@ Header.propTypes = {
 export default function Header({ children }) {
   return (
     <HeaderStyled>
-      <BookStyled />
-      <TextStyled>{children}</TextStyled>
+      <Icon />
+      {children}
     </HeaderStyled>
   )
 }
@@ -25,14 +25,5 @@ const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
-`
-
-const TextStyled = styled.div`
   font-size: 2em;
-`
-
-const BookStyled = styled(BookOpen)`
-  display: flex;
-  height: 26px;
-  font-weight: bold;
 `

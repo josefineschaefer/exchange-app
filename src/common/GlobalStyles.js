@@ -11,7 +11,7 @@ export default createGlobalStyle`
   --white: white; 
 }
 
-  * {
+  *{
     box-sizing: border-box;
     font-family: 'Roboto Condensed', sans-serif;
   }
@@ -20,7 +20,7 @@ export default createGlobalStyle`
     overflow-y: scroll;
   }
 
-  .public-DraftEditorPlaceholder-inner {
+  .public-DraftEditorPlaceholder-inner{
     color: #AEAEAE;
   }
 `
