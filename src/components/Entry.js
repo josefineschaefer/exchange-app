@@ -12,11 +12,14 @@ import { convertFromRaw } from 'draft-js'
 
 Entry.propTypes = {
   title: PropTypes.string,
+  fullDate: PropTypes.string,
   text: PropTypes.string,
   image: PropTypes.arrayOf(PropTypes.string),
-  deleteData: PropTypes.func
-  // fullDate: PropTypes.instanceOf(Date)
-  // _id: PropTypes.string
+  deleteData: PropTypes.func,
+  _id: PropTypes.string,
+  tags: PropTypes.object,
+  children: PropTypes.node,
+  editorContent: PropTypes.string
 }
 
 export default function Entry({

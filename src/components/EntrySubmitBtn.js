@@ -1,6 +1,11 @@
 import React from 'react'
 import { useAlert } from 'react-alert'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+EntrySubmitBtn.propTypes = {
+  children: PropTypes.node
+}
 
 export default function EntrySubmitBtn({ children }) {
   const alert = useAlert()

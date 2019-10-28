@@ -13,8 +13,8 @@ Homepage.propTypes = {
 export default function Homepage({ entries, deleteData, editData }) {
   return (
     <StyledHomePage>
-      <StyledHeaderImage src={worldmap} />
       <Scroller>
+        <StyledHeaderImage src={worldmap} />
         {entries
           .slice()
           .sort((a, b) => new Date(a.fullDate) - new Date(b.fullDate))
@@ -24,7 +24,7 @@ export default function Homepage({ entries, deleteData, editData }) {
               key={entry._id}
               deleteData={deleteData}
               editData={editData}
-              tags={entry.tags} 
+              tags={entry.tags}
               editorContent={entry.editorContent}
             />
           ))}

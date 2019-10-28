@@ -6,13 +6,13 @@ import { GridVertical } from 'styled-icons/boxicons-regular/GridVertical'
 import { Image } from 'styled-icons/fa-solid/Image'
 
 Gallery.propTypes = {
-  image: PropTypes.arrayOf(PropTypes.string)
+  entries: PropTypes.object, 
+  onSelectTag: PropTypes.func
 }
 
 export default function Gallery({ entries, onSelectTag }) {
   const allImages = entries
     .map(entry => entry.image)
-
     .join(',')
     .split(',')
 

@@ -5,6 +5,12 @@ import { Editor, RichUtils } from 'draft-js'
 import { Bold } from 'styled-icons/fa-solid/Bold'
 import { Italic } from 'styled-icons/fa-solid/Italic'
 import { Underline } from 'styled-icons/fa-solid/Underline'
+import PropTypes from 'prop-types'
+
+InputEditor.propTypes = {
+  editorContentState: PropTypes.array
+}
+
 
 export default function InputEditor({ editorContentState }) {
   const [editorContent, setEditorContent] = editorContentState

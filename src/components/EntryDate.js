@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
-// EntryDate.PropTypes = {
-//   fullDate: PropTypes.?
-// }
+EntryDate.propTypes = {
+  fullDate: PropTypes.string
+}
 
 export default function EntryDate({ fullDate }) {
   function renderableDate(fullDate) {
