@@ -1,8 +1,10 @@
 ## Preview
 
-!<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347087/pqyisgs1u9hjg9phohwg.png" width="200">
-!<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347244/pjo7dtdz37oktfq5mh7o.png" width="200">
-!<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347296/qmdi59z7jycff3xqn2ja.png" width="200">
+<p>
+<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347087/pqyisgs1u9hjg9phohwg.png" width="200">
+<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347244/pjo7dtdz37oktfq5mh7o.png" width="200">
+<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347296/qmdi59z7jycff3xqn2ja.png" width="200">
+</p>
 
 ## Exchange App
 
