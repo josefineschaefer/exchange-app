@@ -1,3 +1,9 @@
+## Preview
+
+<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347087/pqyisgs1u9hjg9phohwg.png" width="200">
+<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347244/pjo7dtdz37oktfq5mh7o.png" width="200">
+<img src="https://res.cloudinary.com/exchange-app/image/upload/v1572347296/qmdi59z7jycff3xqn2ja.png" width="200">
+
 ## Exchange App
 
 I developed the exchange app as part of my final project in the web development course at neue Fische in October 2019. It's a digital journal which enables exchange students to capture their memories in text and photographs, helps organise pictures and lets users save places and notes on an interactive map. 
